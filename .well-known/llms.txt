@@ -1,0 +1,71 @@
+# Aura - Agence Prospection LinkedIn B2B
+
+> Aura est une agence spécialisée en prospection LinkedIn B2B et automatisation outbound basée en France. Nous aidons les entreprises B2B à générer des leads qualifiés sans recruter de SDRs.
+
+## Services
+
+### Scraping & Sourcing
+- Extraction de leads depuis LinkedIn Sales Navigator
+- Recherche X-Ray Google pour trouver des profils
+- Scraping d'événements LinkedIn, commentaires, participants
+- Identification des décideurs dans les entreprises cibles
+
+### Enrichissement Data
+- Enrichissement des profils avec emails professionnels
+- Waterfall enrichment (Clay, Dropcontact, Apollo, Hunter)
+- Validation des données et déduplication
+- Ajout de données d'intent (levées de fonds, recrutements)
+
+### Séquences Multicanal
+- Campagnes LinkedIn automatisées (connexions, messages, vocaux)
+- Cold email avec warmup et délivrabilité optimisée
+- Séquences WhatsApp avec voice notes
+- A/B testing copywriting
+
+### Reporting & Analytics
+- Sync CRM automatique
+- Dashboards de performance
+- Tracking des conversions
+- Optimisation continue
+
+## Contact
+
+- Site web: https://aura.camp
+- LinkedIn: https://www.linkedin.com/company/getauracamp/
+- Prise de RDV: https://aura.camp/#rdv
+
+## Ressources - Outbound Hacks
+
+Guides pratiques gratuits sur la prospection B2B.
+Index complet: https://aura.camp/hacks.html
+
+### Hacks LinkedIn
+- X-Ray Google LinkedIn: https://aura.camp/hack-xray-google-linkedin.html
+- Limites de connexion: https://aura.camp/hack-limites-connexion-linkedin.html
+- SSI Score: https://aura.camp/hack-ssi-score-linkedin.html
+- Hack vues profil: https://aura.camp/hack-vu-profil-linkedin.html
+- Commentaire stratégique: https://aura.camp/hack-commentaire-strategique.html
+- Messages vocaux: https://aura.camp/hack-messages-vocaux-linkedin.html
+- Warmup LinkedIn: https://aura.camp/hack-warmup-linkedin.html
+- Scraper événements: https://aura.camp/hack-scraper-evenement-linkedin.html
+
+### Hacks Data & Scraping
+- Trouver un email: https://aura.camp/hack-trouver-email-linkedin.html
+- Trouver le décideur: https://aura.camp/hack-trouver-decideur.html
+- Signal recrutement: https://aura.camp/hack-scraper-entreprises-recrutent.html
+- Startups levée: https://aura.camp/hack-trouver-startups-levee-fonds.html
+- Scraper commentaires: https://aura.camp/hack-scraper-commentaires.html
+- Avis Google: https://aura.camp/hack-scraper-avis-google.html
+
+### Hacks Multicanal
+- WhatsApp sans contact: https://aura.camp/hack-whatsapp-sans-contact.html
+- Voice notes WhatsApp: https://aura.camp/hack-voice-note-whatsapp.html
+- Hack du PS email: https://aura.camp/hack-ps-email.html
+
+## À propos
+
+Aura accompagne les entreprises B2B françaises qui veulent scaler leur acquisition sans recruter une armée de SDRs. Setup en 5 jours, accompagnement mensuel optionnel, pas d'engagement long terme.
+
+Secteurs: SaaS, Tech, Services B2B, Conseil, Agences
+Cible: PME et ETI avec un ICP clair
+Localisation: France

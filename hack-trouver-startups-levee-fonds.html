@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trouver les startups qui lèvent des fonds : prospects avec budget | Aura - Outbound Hacks</title>
+    <meta name="description" content="Une startup qui lève = budget marketing/sales. Découvrez comment identifier ces entreprises et les contacter au bon moment.">
+    <link rel="canonical" href="https://aura.camp/hack-trouver-startups-levee-fonds.html">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --accent: #4285F4;
+            --grid: #e0e0e0;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'IBM Plex Sans', -apple-system, sans-serif; background: var(--white); color: var(--black); line-height: 1.6; font-size: 16px; }
+        .grid-bg { position: fixed; inset: 0; background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none; z-index: -1; opacity: 0.5; }
+        a { color: inherit; text-decoration: none; }
+
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.95); border-bottom: 1px solid var(--gray-200); }
+        .nav-logo { display: flex; align-items: center; gap: 10px; }
+        .nav-logo img { height: 28px; }
+        .nav-logo span { font-size: 20px; font-weight: 600; letter-spacing: -0.5px; }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .lang-switcher { display: flex; gap: 4px; margin-right: 8px; padding-right: 12px; border-right: 1px solid var(--gray-200); }
+        .lang-btn { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; font-size: 16px; border-radius: 4px; opacity: 0.5; transition: opacity 0.15s; text-decoration: none; }
+        .lang-btn:hover { opacity: 0.8; }
+        .lang-btn.active { opacity: 1; }
+        .btn { padding: 10px 20px; font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; font-weight: 500; border: 1px solid var(--gray-200); background: var(--white); color: var(--black); cursor: pointer; transition: all 0.15s ease; }
+        .btn:hover { border-color: var(--black); }
+        .btn-dark { background: var(--black); color: var(--white); border-color: var(--black); }
+        .btn-dark:hover { background: var(--gray-600); }
+
+        .article { max-width: 700px; margin: 0 auto; padding: 120px 32px 60px; }
+        .article-tag { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 4px 10px; background: #dcfce7; color: #16a34a; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .article h1 { font-size: 36px; font-weight: 700; line-height: 1.2; margin-bottom: 24px; }
+        .article-meta { font-size: 14px; color: var(--gray-500); margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--gray-200); }
+        .article-content p { margin-bottom: 24px; font-size: 17px; line-height: 1.7; }
+        .article-content h2 { font-size: 24px; font-weight: 600; margin: 48px 0 16px; }
+        .article-content h3 { font-size: 18px; font-weight: 600; margin: 32px 0 12px; }
+        .article-content ul, .article-content ol { margin-bottom: 24px; padding-left: 24px; }
+        .article-content li { margin-bottom: 8px; }
+        .article-content a { color: var(--accent); text-decoration: underline; }
+        .code-block { background: #1e1e1e; color: #e5e5e5; padding: 20px 24px; font-family: 'IBM Plex Mono', monospace; font-size: 14px; margin: 24px 0; overflow-x: auto; border-radius: 4px; }
+        .code-block .comment { color: #6b7280; }
+        .code-block .string { color: #4ade80; }
+        .code-block .var { color: #60a5fa; }
+        .code-block .keyword { color: #f472b6; }
+        .highlight-box { background: var(--gray-50); border-left: 3px solid var(--accent); padding: 20px 24px; margin: 24px 0; }
+        .highlight-box p { margin-bottom: 0; }
+        .cta-box { background: var(--black); color: var(--white); padding: 32px; margin: 48px 0; text-align: center; }
+        .cta-box h3 { color: var(--white); margin-bottom: 12px; }
+        .cta-box p { color: var(--gray-400); margin-bottom: 20px; }
+        .cta-box a { display: inline-block; padding: 12px 24px; background: var(--white); color: var(--black); text-decoration: none; font-weight: 500; }
+        .other-hacks { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--gray-200); }
+        .other-hacks h3 { font-size: 18px; margin-bottom: 20px; }
+        .other-hacks-list { list-style: none; display: grid; gap: 12px; }
+        .other-hacks-list a { display: block; padding: 16px; background: var(--gray-50); border: 1px solid var(--gray-200); text-decoration: none; color: var(--black); font-size: 14px; transition: border-color 0.15s; }
+        .other-hacks-list a:hover { border-color: var(--black); }
+
+        .footer { padding: 48px 32px 40px; border-top: 1px solid var(--gray-200); max-width: 1100px; margin: 0 auto; }
+        .footer-main { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+        .footer-brand p { font-size: 14px; color: var(--gray-500); margin-top: 16px; line-height: 1.6; }
+        .footer-logo { display: flex; align-items: center; gap: 10px; }
+        .footer-logo img { height: 24px; }
+        .footer-logo span { font-weight: 600; }
+        .footer-col h5 { font-size: 14px; font-weight: 600; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 10px; }
+        .footer-col a { font-size: 14px; color: var(--gray-600); transition: color 0.15s; }
+        .footer-col a:hover { color: var(--black); }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid var(--gray-200); }
+        .footer-copy { font-size: 13px; color: var(--gray-400); }
+        .footer-social { display: flex; gap: 16px; }
+        .footer-social a { color: var(--gray-400); transition: color 0.15s; }
+        .footer-social a:hover { color: var(--black); }
+
+        @media (max-width: 768px) {
+            .nav-links .btn { display: none; }
+            .lang-switcher { border-right: none; padding-right: 0; margin-right: 0; }
+            .article { padding: 100px 20px 40px; }
+            .article h1 { font-size: 28px; }
+            .footer-main { grid-template-columns: 1fr 1fr; gap: 24px; }
+            .footer-brand { grid-column: span 2; }
+        }
+
+        @media (max-width: 480px) {
+            .footer-main { grid-template-columns: 1fr; text-align: center; }
+            .footer-brand { grid-column: span 1; }
+            .footer-logo { justify-content: center; }
+            .footer-bottom { flex-direction: column; gap: 16px; }
+        }
+    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Trouver les startups qui lèvent des fonds : prospects avec budget",
+  "description": "Une startup qui lève = budget marketing/sales. Découvrez comment identifier ces entreprises et les contacter au bon moment.",
+  "author": {
+    "@type": "Organization",
+    "name": "Aura",
+    "url": "https://aura.camp"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Aura",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://aura.camp/logo.png"
+    }
+  },
+  "datePublished": "2025-01-20",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://aura.camp/hack-trouver-startups-levee-fonds.html"
+  }
+}
+</script>
+</head>
+<body>
+    <div class="grid-bg"></div>
+
+    <nav class="nav">
+        <a href="index.html" class="nav-logo"><img src="logo.png" alt="Aura"><span>aura</span></a>
+        <div class="nav-links"><div class="lang-switcher">
+                <a href="hack-trouver-startups-levee-fonds.html" class="lang-btn active" title="Français">🇫🇷</a>
+                <a href="hack-funded-startups-en.html" class="lang-btn" title="English">🇬🇧</a>
+            </div>
+            <a href="index.html#rdv" class="btn btn-dark">Prendre RDV</a></div>
+    </nav>
+
+    <article class="article">
+        <span class="article-tag">Data / Scraping</span>
+        <h1>Trouver les startups qui lèvent des fonds</h1>
+        <div class="article-meta">6 min de lecture</div>
+
+        <div class="article-content">
+            <p>Une startup qui lève des fonds va dépenser cet argent. Marketing, sales, recrutement, outils. C'est le moment idéal pour la contacter - elle a le budget et le besoin de scaler.</p>
+
+            <h2>Pourquoi cibler les levées de fonds</h2>
+            <ul>
+                <li><strong>Budget débloqué</strong> - L'argent est sur le compte, prêt à être dépensé</li>
+                <li><strong>Pression de croissance</strong> - Les investisseurs attendent des résultats rapides</li>
+                <li><strong>Recrutement massif</strong> - Nouveaux besoins en outils et services</li>
+                <li><strong>Timing parfait</strong> - Décisions prises dans les 3-6 mois post-levée</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>Logique :</strong> Seed/Série A = construction équipe = besoin d'outils fondamentaux. Série B/C = scale = besoin d'optimisation et d'automatisation.</p>
+            </div>
+
+            <h2>Sources pour trouver les levées</h2>
+
+            <h3>1. Dealroom</h3>
+            <p>La référence européenne pour le tracking des startups :</p>
+            <ul>
+                <li>Base de données complète des levées</li>
+                <li>Filtres par montant, secteur, pays, date</li>
+                <li>Alertes email possibles</li>
+                <li>Version gratuite limitée, payant pour l'export</li>
+            </ul>
+
+            <h3>2. Crunchbase</h3>
+            <p>Base mondiale, très complète sur les US mais bonne couverture Europe :</p>
+            <ul>
+                <li>Recherche avancée par funding round</li>
+                <li>Données sur les investisseurs</li>
+                <li>API disponible (payante)</li>
+                <li>Alertes personnalisées</li>
+            </ul>
+
+            <h3>3. Maddyness / FrenchWeb</h3>
+            <p>Médias français qui couvrent toutes les levées :</p>
+            <ul>
+                <li>Articles quotidiens sur les levées françaises</li>
+                <li>Newsletters gratuites</li>
+                <li>Contexte sur les startups (pas juste les chiffres)</li>
+            </ul>
+
+            <div class="code-block">
+<span class="comment">// Google Alert pour les levées françaises</span>
+<span class="string">"lève" "millions" "startup" France</span>
+<span class="string">"levée de fonds" "série A" OR "seed"</span>
+<span class="string">"annonce" "financement" startup Paris</span>
+            </div>
+
+            <h3>4. LinkedIn</h3>
+            <p>Les fondateurs annoncent souvent leurs levées :</p>
+            <ul>
+                <li>Suivez les hashtags #levéedefonds #fundraising</li>
+                <li>Posts des fondateurs célébrant la levée</li>
+                <li>Posts des VCs annonçant leurs investissements</li>
+            </ul>
+
+            <h3>5. Product Hunt</h3>
+            <p>Les startups qui lancent sur PH ont souvent levé récemment :</p>
+            <ul>
+                <li>Vérifiez la section "Funding" sur leur page</li>
+                <li>Signal de croissance + visibilité</li>
+            </ul>
+
+            <h2>Automatiser la veille</h2>
+
+            <h3>Méthode Zapier + Sheets</h3>
+            <div class="code-block">
+<span class="comment">// Workflow Zapier</span>
+<span class="keyword">Trigger:</span> RSS Feed Maddyness/FrenchWeb
+<span class="keyword">Filter:</span> Titre contient "lève" OR "levée" OR "millions"
+<span class="keyword">Action:</span> Ajouter ligne Google Sheets
+
+<span class="comment">// Colonnes du Sheet</span>
+Date | Startup | Montant | Round | Lien article
+            </div>
+
+            <h3>Méthode Crunchbase API</h3>
+            <div class="code-block">
+<span class="comment">// Appel API Crunchbase (simplifié)</span>
+<span class="keyword">GET</span> /funding_rounds
+{
+  <span class="string">"location"</span>: <span class="string">"France"</span>,
+  <span class="string">"announced_on_after"</span>: <span class="string">"2024-01-01"</span>,
+  <span class="string">"funding_type"</span>: [<span class="string">"seed"</span>, <span class="string">"series_a"</span>, <span class="string">"series_b"</span>]
+}
+            </div>
+
+            <h2>Qualifier les levées</h2>
+            <p>Toutes les levées ne sont pas égales pour votre prospection :</p>
+
+            <table style="width:100%; border-collapse: collapse; margin: 24px 0; font-size: 14px;">
+                <tr style="border-bottom: 1px solid #e5e5e5;">
+                    <th style="text-align:left; padding: 12px 0;">Round</th>
+                    <th style="text-align:left; padding: 12px 0;">Montant type</th>
+                    <th style="text-align:left; padding: 12px 0;">Focus de la startup</th>
+                </tr>
+                <tr style="border-bottom: 1px solid #e5e5e5;">
+                    <td style="padding: 12px 0;">Pre-seed</td>
+                    <td style="padding: 12px 0;">&lt;500K€</td>
+                    <td style="padding: 12px 0;">Produit, premiers clients</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e5e5e5;">
+                    <td style="padding: 12px 0;">Seed</td>
+                    <td style="padding: 12px 0;">500K-2M€</td>
+                    <td style="padding: 12px 0;">Product-market fit, équipe fondatrice</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e5e5e5;">
+                    <td style="padding: 12px 0;">Série A</td>
+                    <td style="padding: 12px 0;">2-10M€</td>
+                    <td style="padding: 12px 0;">Scale équipe, go-to-market</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e5e5e5;">
+                    <td style="padding: 12px 0;">Série B</td>
+                    <td style="padding: 12px 0;">10-30M€</td>
+                    <td style="padding: 12px 0;">Scale agressif, international</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px 0;">Série C+</td>
+                    <td style="padding: 12px 0;">&gt;30M€</td>
+                    <td style="padding: 12px 0;">Dominance marché, M&A</td>
+                </tr>
+            </table>
+
+            <div class="highlight-box">
+                <p><strong>Sweet spot :</strong> Série A et B sont souvent les meilleurs moments. L'entreprise a prouvé son modèle et doit maintenant accélérer - c'est là qu'elle investit dans les outils et partenaires.</p>
+            </div>
+
+            <h2>Timing d'approche</h2>
+            <ul>
+                <li><strong>J+1 à J+7</strong> - L'annonce est fraîche, accroche facile</li>
+                <li><strong>J+30 à J+90</strong> - L'équipe se structure, les décisions se prennent</li>
+                <li><strong>J+180+</strong> - Trop tard, les choix sont faits</li>
+            </ul>
+
+            <h2>Templates d'approche</h2>
+
+            <h3>Approche directe post-annonce</h3>
+            <div class="code-block">
+<span class="string">"Félicitations pour la levée [Prénom] !
+
+[Montant]M€ pour [objectif mentionné dans l'article],
+c'est une belle étape.
+
+Je travaille avec des startups post-Série A comme
+[Référence] sur [votre domaine]. On les aide à
+[résultat concret] pendant cette phase de scale.
+
+Ça vous dit d'en parler 15 min ?"</span>
+            </div>
+
+            <h3>Approche via le recrutement</h3>
+            <div class="code-block">
+<span class="string">"Bonjour [Prénom],
+
+Je vois que [Startup] recrute [X postes] depuis
+la levée. C'est souvent le moment où les équipes
+ont besoin de [votre domaine].
+
+On a accompagné [Référence similaire] juste après
+leur Série A sur exactement ce sujet.
+
+Open pour un call rapide ?"</span>
+            </div>
+
+            <h2>Workflow complet</h2>
+            <ol>
+                <li><strong>Veille quotidienne</strong> - Dealroom, Maddyness, Google Alerts</li>
+                <li><strong>Qualification</strong> - Round, montant, secteur, fit avec votre offre</li>
+                <li><strong>Identification décideur</strong> - Fondateur, Head of [département cible]</li>
+                <li><strong>Enrichissement</strong> - Email via Dropcontact/Apollo</li>
+                <li><strong>Séquence</strong> - LinkedIn + Email avec contexte levée</li>
+                <li><strong>Timing</strong> - J+7 puis J+30 pour le follow-up</li>
+            </ol>
+
+            <h2>Outils recommandés</h2>
+            <ul>
+                <li><strong>Dealroom</strong> - Base de données principale (payant)</li>
+                <li><strong>Crunchbase</strong> - Alternative, bonne couverture (freemium)</li>
+                <li><strong>Google Alerts</strong> - Veille gratuite sur les annonces</li>
+                <li><strong>Feedly</strong> - Agrégation RSS des médias startup</li>
+                <li><strong>Clay</strong> - Automatisation de l'enrichissement</li>
+            </ul>
+
+            <div class="cta-box">
+                <h3>On track les levées pour vous</h3>
+                <p>Veille automatisée, qualification, enrichissement, séquences.</p>
+                <a href="index.html#rdv">Prendre RDV</a>
+            </div>
+        </div>
+
+        <div class="other-hacks">
+            <h3>Autres hacks outbound</h3>
+            <ul class="other-hacks-list">
+                <li><a href="hack-scraper-entreprises-recrutent.html">Scraper les entreprises qui recrutent</a></li>
+                <li><a href="hack-trouver-decideur.html">Trouver le décideur dans une entreprise</a></li>
+                <li><a href="hack-xray-google-linkedin.html">X-Ray Google LinkedIn</a></li>
+                <li><a href="hack-trouver-email-linkedin.html">Trouver l'email d'un profil LinkedIn</a></li>
+            </ul>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo"><img src="logo.png" alt="Aura"><span>aura</span></a>
+                <p>Agence spécialisée en prospection LinkedIn B2B. On automatise votre outbound pour que vous puissiez vous concentrer sur closer.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Services</h5>
+                <ul>
+                    <li><a href="index.html#sourcing">Scraping LinkedIn</a></li>
+                    <li><a href="index.html#sourcing">Enrichissement data</a></li>
+                    <li><a href="index.html#copywriting">Séquences multicanal</a></li>
+                    <li><a href="index.html#results">Reporting</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Hacks LinkedIn</h5>
+                <ul>
+                    <li><a href="hack-xray-google-linkedin.html">X-Ray Google LinkedIn</a></li>
+                    <li><a href="hack-limites-connexion-linkedin.html">Limites de connexion</a></li>
+                    <li><a href="hack-ssi-score-linkedin.html">SSI Score LinkedIn</a></li>
+                    <li><a href="hack-vu-profil-linkedin.html">Hack "Vu votre profil"</a></li>
+                    <li><a href="hack-commentaire-strategique.html">Commentaire stratégique</a></li>
+                    <li><a href="hack-messages-vocaux-linkedin.html">Vocaux LinkedIn</a></li>
+                    <li><a href="hack-warmup-linkedin.html">Warmup LinkedIn</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Hacks Data</h5>
+                <ul>
+                    <li><a href="hack-trouver-email-linkedin.html">Trouver un email</a></li>
+                    <li><a href="hack-trouver-decideur.html">Trouver le décideur</a></li>
+                    <li><a href="hack-scraper-evenement-linkedin.html">Scraper événements</a></li>
+                    <li><a href="hack-scraper-entreprises-recrutent.html">Entreprises qui recrutent</a></li>
+                    <li><a href="hack-trouver-startups-levee-fonds.html">Startups en levée</a></li>
+                    <li><a href="hack-scraper-commentaires.html">Scraper commentaires</a></li>
+                    <li><a href="hack-scraper-avis-google.html">Avis Google</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Contact</h5>
+                <ul>
+                    <li><a href="index.html#rdv">Prendre RDV</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
+                    <li><a href="mailto:hello@aura.camp">Nous écrire</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copy">&copy; 2025 Aura - Agence Prospection LinkedIn B2B</span>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/company/getauracamp/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

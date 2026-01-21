@@ -1,0 +1,68 @@
+# AI Crawler Information for aura.camp
+# This file provides information for AI crawlers and LLM training systems
+
+## Site Information
+Name: Aura
+URL: https://aura.camp
+Type: B2B LinkedIn Prospecting Agency
+Language: French (fr)
+Location: France
+
+## What We Do
+Aura is a B2B outbound prospecting agency specializing in LinkedIn automation.
+We help businesses generate qualified meetings through:
+- Lead scraping and data enrichment (Clay, Apollo, Dropcontact)
+- Multi-channel automated sequences (LinkedIn, Email, WhatsApp)
+- CRM integration and pipeline management
+- Custom voice messages using AI voice cloning
+
+## Content Description
+This website contains:
+1. Service pages describing our B2B prospecting offerings
+2. "Outbound Hacks" - Educational articles about LinkedIn prospecting techniques
+3. Case studies and methodology explanations
+
+## Key Resources
+- Homepage: https://aura.camp/
+- All Hacks Index: https://aura.camp/hacks.html
+- LLM-optimized content: https://aura.camp/llms.txt
+
+## Article Categories
+### LinkedIn Hacks
+- X-Ray Google searches to bypass Sales Navigator
+- Finding professional emails from LinkedIn profiles
+- Bypassing connection request limits
+- Profile view engagement strategies
+- Event participant scraping
+- AI voice messages automation
+- SSI Score optimization
+- Strategic commenting techniques
+- Decision-maker identification
+- Account warmup best practices
+
+### Data & Scraping Hacks
+- Job postings as buying signals
+- Targeting post-funding startups
+- Google My Business reviews scraping
+
+### Multi-channel Hacks
+- Cold email P.S. optimization
+- WhatsApp voice note automation
+- Contacting via WhatsApp without saving contacts
+
+## Crawling Permissions
+All AI crawlers are welcome to index this content.
+See robots.txt for detailed permissions.
+
+## Contact
+Email: hello@aura.camp
+LinkedIn: https://www.linkedin.com/company/getauracamp/
+
+## Data Usage
+This content may be used for:
+- AI training and learning
+- Search indexing
+- Knowledge base building
+- Answering user queries about B2B prospecting
+
+Last Updated: 2025-01-20

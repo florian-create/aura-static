@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OG Image - Aura</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width: 1200px;
+            height: 630px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(#e0e0e0 1px, transparent 1px),
+                linear-gradient(90deg, #e0e0e0 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.5;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 60px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .logo img {
+            height: 50px;
+        }
+        .logo span {
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+            max-width: 900px;
+        }
+        .tagline {
+            font-size: 24px;
+            color: #525252;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        .badges {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+        .badge {
+            padding: 12px 24px;
+            background: #f5f5f5;
+            border: 1px solid #e5e5e5;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .badge.dark {
+            background: #1a1a1a;
+            color: #fff;
+            border-color: #1a1a1a;
+        }
+        .url {
+            position: absolute;
+            bottom: 40px;
+            left: 60px;
+            font-size: 20px;
+            color: #737373;
+            font-weight: 500;
+        }
+        .linkedin-icon {
+            position: absolute;
+            top: 40px;
+            right: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+
+    <svg class="linkedin-icon" width="48" height="48" viewBox="0 0 24 24" fill="#0A66C2">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+    </svg>
+
+    <div class="content">
+        <div class="logo">
+            <img src="logo.png" alt="Aura">
+            <span>aura</span>
+        </div>
+        <h1>Prospection LinkedIn B2B Automatisée</h1>
+        <p class="tagline">Scraping, enrichissement, séquences multicanal. On génère vos meetings, vous closez.</p>
+        <div class="badges">
+            <span class="badge dark">LinkedIn Outbound</span>
+            <span class="badge">Cold Email</span>
+            <span class="badge">WhatsApp</span>
+            <span class="badge">Voicemail AI</span>
+        </div>
+    </div>
+
+    <span class="url">aura.camp</span>
+</body>
+</html>
