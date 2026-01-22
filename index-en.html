@@ -2059,7 +2059,7 @@
                 <h3>Une autre question ?</h3>
                 <p>Ask us your question and we'll respond quickly.</p>
                 <form action="https://api.web3forms.com/submit" method="POST" class="question-form-inner">
-                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                    <input type="hidden" name="access_key" value="076685e8-fedc-415e-b0f3-e684e516de5e">
                     <input type="hidden" name="subject" value="Nouvelle question depuis aura">
                     <div class="form-group">
                         <label>Your nom</label>
@@ -2147,18 +2147,21 @@
             <button class="modal-close" onclick="closeModal()">&times;</button>
             <h3>Contact</h3>
             <p>We'll get back to you quickly.</p>
-            <form onsubmit="submitForm(event)">
+            <form action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="076685e8-fedc-415e-b0f3-e684e516de5e">
+                <input type="hidden" name="subject" value="New contact message from aura.camp">
+                <input type="hidden" name="redirect" value="https://aura.camp/index-en.html?success=true">
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" required placeholder="Marie, Head of Sales">
+                    <input type="text" name="name" required placeholder="Marie, Head of Sales">
                 </div>
                 <div class="form-group">
                     <label>Work Email</label>
-                    <input type="email" required placeholder="marie@your-saas.com">
+                    <input type="email" name="email" required placeholder="marie@your-saas.com">
                 </div>
                 <div class="form-group">
                     <label>Message</label>
-                    <textarea placeholder="Our target: CTOs of B2B SaaS in Europe..."></textarea>
+                    <textarea name="message" required placeholder="Our target: CTOs of B2B SaaS in Europe..."></textarea>
                 </div>
                 <button type="submit" class="btn btn-dark form-submit">Send</button>
             </form>
