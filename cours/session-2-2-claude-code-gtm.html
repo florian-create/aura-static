@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 2.2 - Claude Code comme Copilote GTM | Cours GTM Engineer</title>
+    <meta name="description" content="Configurer Claude Code pour avoir un assistant IA qui connait votre contexte: transcripts de calls, comptes, playbooks. Suivi en temps reel de vos discussions.">
+    <link rel="icon" type="image/png" href="../logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-300: #d4d4d4;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --accent: #4285F4;
+            --green: #16a34a;
+            --green-light: #dcfce7;
+            --orange: #ea580c;
+            --orange-light: #ffedd5;
+            --purple: #7c3aed;
+            --purple-light: #f3e8ff;
+            --red: #dc2626;
+            --red-light: #fee2e2;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'IBM Plex Sans', -apple-system, sans-serif; background: var(--white); color: var(--black); line-height: 1.7; font-size: 17px; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .mono { font-family: 'IBM Plex Mono', monospace; }
+        code { font-family: 'IBM Plex Mono', monospace; background: var(--gray-100); padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+        pre { background: var(--black); color: #fff; padding: 20px; overflow-x: auto; margin: 20px 0; border-radius: 4px; }
+        pre code { background: none; padding: 0; color: inherit; }
+
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.98); border-bottom: 1px solid var(--gray-200); }
+        .nav-logo { display: flex; align-items: center; gap: 10px; color: var(--black); }
+        .nav-logo img { height: 28px; }
+        .nav-logo span { font-size: 20px; font-weight: 600; }
+        .nav-links { display: flex; gap: 16px; align-items: center; }
+        .nav-links a { color: var(--gray-600); font-size: 14px; text-decoration: none; }
+        .nav-links a:hover { color: var(--black); }
+
+        .header { max-width: 800px; margin: 0 auto; padding: 120px 24px 40px; }
+        .breadcrumb { font-size: 13px; color: var(--gray-500); margin-bottom: 16px; }
+        .breadcrumb a { color: var(--gray-500); }
+        .breadcrumb a:hover { color: var(--black); }
+        .header-tag { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 4px 10px; background: var(--orange-light); color: var(--orange); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+        .header h1 { font-size: 36px; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+        .header-meta { display: flex; gap: 24px; color: var(--gray-500); font-size: 14px; margin-bottom: 24px; }
+        .header-meta span { display: flex; align-items: center; gap: 6px; }
+        .header-intro { font-size: 19px; color: var(--gray-600); border-left: 3px solid var(--orange); padding-left: 20px; }
+
+        .content { max-width: 800px; margin: 0 auto; padding: 40px 24px 80px; }
+        .content h2 { font-size: 26px; font-weight: 700; margin: 48px 0 20px; padding-top: 24px; border-top: 1px solid var(--gray-200); }
+        .content h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .content h3 { font-size: 20px; font-weight: 600; margin: 32px 0 16px; }
+        .content h4 { font-size: 17px; font-weight: 600; margin: 24px 0 12px; color: var(--gray-600); }
+        .content p { margin-bottom: 16px; }
+        .content ul, .content ol { margin: 16px 0; padding-left: 24px; }
+        .content li { margin-bottom: 8px; }
+
+        .img-container { margin: 24px 0; }
+        .img-container img { width: 100%; border: 1px solid var(--gray-200); border-radius: 4px; }
+        .img-placeholder { background: var(--gray-100); border: 2px dashed var(--gray-300); border-radius: 4px; padding: 60px 24px; text-align: center; color: var(--gray-500); }
+        .img-placeholder .number { font-family: 'IBM Plex Mono', monospace; font-size: 13px; background: var(--gray-200); padding: 4px 10px; border-radius: 20px; margin-bottom: 12px; display: inline-block; }
+        .img-placeholder .desc { font-size: 14px; }
+        .img-caption { font-size: 13px; color: var(--gray-500); text-align: center; margin-top: 8px; font-style: italic; }
+
+        .callout { padding: 20px; margin: 24px 0; border-radius: 4px; }
+        .callout-tip { background: var(--green-light); border-left: 4px solid var(--green); }
+        .callout-warning { background: var(--orange-light); border-left: 4px solid var(--orange); }
+        .callout-info { background: var(--purple-light); border-left: 4px solid var(--purple); }
+        .callout-danger { background: var(--red-light); border-left: 4px solid var(--red); }
+        .callout-title { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .callout p:last-child { margin-bottom: 0; }
+
+        .step { display: flex; gap: 16px; margin: 24px 0; }
+        .step-number { flex-shrink: 0; width: 32px; height: 32px; background: var(--black); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; }
+        .step-content { flex: 1; }
+        .step-content h4 { margin-top: 4px; }
+
+        .toc { background: var(--gray-50); border: 1px solid var(--gray-200); padding: 24px; margin-bottom: 40px; }
+        .toc h4 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray-500); margin-bottom: 16px; }
+        .toc ul { list-style: none; padding: 0; margin: 0; }
+        .toc li { margin-bottom: 8px; }
+        .toc a { color: var(--gray-600); font-size: 15px; display: flex; align-items: center; gap: 8px; }
+        .toc a:hover { color: var(--black); text-decoration: none; }
+        .toc .duration { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--gray-400); }
+
+        .tools-list { display: flex; gap: 12px; flex-wrap: wrap; margin: 16px 0; }
+        .tool-badge { display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: var(--gray-100); border-radius: 4px; font-size: 14px; }
+
+        .file-tree { background: var(--black); color: #e5e5e5; padding: 20px; border-radius: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 14px; margin: 20px 0; }
+        .file-tree .folder { color: #60a5fa; }
+        .file-tree .file { color: #a3a3a3; }
+        .file-tree .important { color: #4ade80; }
+
+        .terminal { background: var(--black); color: #e5e5e5; padding: 20px; border-radius: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 14px; margin: 20px 0; }
+        .terminal .prompt { color: #4ade80; }
+        .terminal .command { color: #fff; }
+        .terminal .output { color: #a3a3a3; }
+        .terminal .claude { color: #c4b5fd; }
+
+        .footer { border-top: 1px solid var(--gray-200); padding: 40px 24px; max-width: 800px; margin: 0 auto; }
+        .footer-nav { display: flex; justify-content: space-between; }
+        .footer-nav a { color: var(--gray-600); font-size: 14px; }
+        .footer-nav a:hover { color: var(--black); }
+        .footer-nav .next { text-align: right; }
+        .footer-nav .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray-400); margin-bottom: 4px; }
+
+        @media (max-width: 640px) {
+            .header { padding: 100px 16px 32px; }
+            .header h1 { font-size: 28px; }
+            .content { padding: 32px 16px 60px; }
+            .header-meta { flex-wrap: wrap; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <a href="../index.html" class="nav-logo"><img src="../logo.png" alt="Aura"><span>aura</span></a>
+        <div class="nav-links">
+            <a href="../cours-gtm.html">Tous les cours</a>
+            <a href="../hacks.html">Hacks</a>
+        </div>
+    </nav>
+
+    <header class="header">
+        <div class="breadcrumb">
+            <a href="../cours-gtm.html">Cours GTM</a> / <a href="../cours-gtm.html#niveau-2">Niveau 2</a> / Session 2.2
+        </div>
+        <span class="header-tag">Niveau 2 - Automatisation & IA</span>
+        <h1>Claude Code comme Copilote GTM</h1>
+        <div class="header-meta">
+            <span>⏱️ 2 heures</span>
+            <span>📊 Intermediaire</span>
+            <span>🔧 Claude Code, Terminal, Fichiers locaux</span>
+        </div>
+        <p class="header-intro">
+            Synchroniser vos transcripts de calls, comptes et playbooks dans Claude Code pour avoir un assistant IA qui connait votre contexte et peut vous aider en temps reel.
+        </p>
+    </header>
+
+    <main class="content">
+
+        <div class="toc">
+            <h4>Sommaire</h4>
+            <ul>
+                <li><a href="#intro">Introduction: Pourquoi Claude Code? <span class="duration">10 min</span></a></li>
+                <li><a href="#partie-1">Partie 1: Installation & Setup <span class="duration">20 min</span></a></li>
+                <li><a href="#partie-2">Partie 2: Structure du workspace GTM <span class="duration">25 min</span></a></li>
+                <li><a href="#partie-3">Partie 3: Le fichier CLAUDE.md <span class="duration">25 min</span></a></li>
+                <li><a href="#partie-4">Partie 4: Use cases GTM en action <span class="duration">30 min</span></a></li>
+                <li><a href="#partie-5">Partie 5: Sync automatique des transcripts <span class="duration">10 min</span></a></li>
+                <li><a href="#ressources">Ressources & Templates</a></li>
+            </ul>
+        </div>
+
+        <h4>Outils utilises dans cette session</h4>
+        <div class="tools-list">
+            <div class="tool-badge">🤖 Claude Code</div>
+            <div class="tool-badge">⌨️ Terminal</div>
+            <div class="tool-badge">📁 Fichiers locaux</div>
+            <div class="tool-badge">🎙️ Meetily/Otter (transcripts)</div>
+        </div>
+
+        <!-- INTRO -->
+        <h2 id="intro">Introduction: Pourquoi Claude Code?</h2>
+
+        <p>La plupart des gens utilisent ChatGPT ou Claude en mode "chat" - ils doivent re-expliquer leur contexte a chaque conversation. <strong>Claude Code change completement la donne.</strong></p>
+
+        <div class="callout callout-info">
+            <div class="callout-title">💡 La difference Claude Code</div>
+            <p>Claude Code tourne dans votre terminal et a acces a vos fichiers locaux. Il peut lire vos transcripts, vos notes, vos playbooks - et s'en souvenir pour vous aider de maniere contextuelle.</p>
+        </div>
+
+        <h3>Cas d'usage GTM concrets</h3>
+        <ul>
+            <li><strong>"Resume-moi le call avec Doctolib d'hier"</strong> - Claude lit le transcript et extrait les points cles</li>
+            <li><strong>"Quelles objections sont revenues cette semaine?"</strong> - Analyse de tous vos transcripts recents</li>
+            <li><strong>"Ecris un follow-up pour ce prospect"</strong> - Base sur le contexte du call + votre playbook</li>
+            <li><strong>"Prepare-moi pour le call avec Alan demain"</strong> - Research + historique des interactions</li>
+        </ul>
+
+        <div class="img-container">
+            <div class="img-placeholder">
+                <div class="number">IMAGE 01</div>
+                <div class="desc">Terminal avec Claude Code ouvert, montrant une conversation contextuelle</div>
+            </div>
+            <p class="img-caption">Claude Code dans le terminal: acces direct a vos fichiers et contexte</p>
+        </div>
+
+        <!-- PARTIE 1 -->
+        <h2 id="partie-1">Partie 1: Installation & Setup</h2>
+
+        <h3>1.1 Pre-requis</h3>
+        <ul>
+            <li>Un Mac (ou Linux) avec Terminal</li>
+            <li>Un compte Claude Pro ou Team ($20/mois)</li>
+            <li>Node.js installe (pour certaines fonctionnalites)</li>
+        </ul>
+
+        <h3>1.2 Installation de Claude Code</h3>
+
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>Ouvrir le Terminal</h4>
+                <p>Sur Mac: <code>Cmd + Space</code> puis tapez "Terminal"</p>
+            </div>
+        </div>
+
+        <div class="img-container">
+            <div class="img-placeholder">
+                <div class="number">IMAGE 02</div>
+                <div class="desc">Spotlight avec "Terminal" tape, montrant l'app Terminal</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>Installer Claude Code via npm</h4>
+                <p>Executez cette commande:</p>
+            </div>
+        </div>
+
+        <div class="terminal">
+            <span class="prompt">$</span> <span class="command">npm install -g @anthropic-ai/claude-code</span>
+        </div>
+
+        <div class="img-container">
+            <div class="img-placeholder">
+                <div class="number">IMAGE 03</div>
+                <div class="desc">Terminal montrant l'installation npm en cours avec la barre de progression</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>Authentification</h4>
+                <p>Lancez Claude Code et connectez votre compte:</p>
+            </div>
+        </div>
+
+        <div class="terminal">
+            <span class="prompt">$</span> <span class="command">claude</span><br>
+            <span class="output">Welcome to Claude Code! Please authenticate...</span><br>
+            <span class="output">Opening browser for authentication...</span>
+        </div>
+
+        <div class="img-container">
+            <div class="img-placeholder">
+                <div class="number">IMAGE 04</div>
+                <div class="desc">Page web d'authentification Claude avec bouton "Authorize"</div>
+            </div>
+        </div>
+
+        <div class="img-container">
+            <div class="img-placeholder">
+                <div class="number">IMAGE 05</div>
+                <div class="desc">Terminal montrant "Authentication successful!"</div>
+            </div>
+            <p class="img-caption">Une fois authentifie, Claude Code est pret a l'emploi</p>
+        </div>
+
+        <div class="callout callout-tip">
+            <div class="callout-title">✅ Verification</div>
+            <p>Tapez <code>claude --version</code> pour verifier que l'installation est complete.</p>
+        </div>
+
+        <!-- PARTIE 2 -->
+        <h2 id="partie-2">Partie 2: Structure du workspace GTM</h2>
+
+        <p>L'organisation de vos fichiers est cruciale. Claude Code lit tout le dossier ou vous le lancez - il faut une structure claire.</p>
+
+        <h3>2.1 Structure recommandee</h3>
+
+        <div class="file-tree">
+<span class="folder">📁 GTM_Workspace/</span>
+├── <span class="important">CLAUDE.md</span>              <span class="file"># Instructions permanentes pour Claude</span>
+├── <span class="folder">📁 transcripts/</span>
+│   ├── <span class="folder">📁 2025-01/</span>
+│   │   ├── <span class="file">2025-01-15_doctolib_discovery.md</span>
+│   │   ├── <span class="file">2025-01-16_alan_demo.md</span>
+│   │   └── <span class="file">2025-01-18_qonto_followup.md</span>
+│   └── <span class="folder">📁 2025-02/</span>
+│       └── <span class="file">...</span>
+├── <span class="folder">📁 accounts/</span>
+│   ├── <span class="file">doctolib.md</span>            <span class="file"># Fiche compte avec contexte</span>
+│   ├── <span class="file">alan.md</span>
+│   └── <span class="file">qonto.md</span>
+├── <span class="folder">📁 playbooks/</span>
+│   ├── <span class="file">discovery_call.md</span>     <span class="file"># Script de discovery</span>
+│   ├── <span class="file">demo_script.md</span>
+│   ├── <span class="file">objection_handling.md</span>
+│   └── <span class="file">follow_up_templates.md</span>
+├── <span class="folder">📁 competitive/</span>
+│   ├── <span class="file">competitor_a.md</span>
+│   └── <span class="file">competitor_b.md</span>
+└── <span class="folder">📁 weekly_notes/</span>
+    ├── <span class="file">week_03.md</span>
+    └── <span class="file">week_04.md</span>
+        </div>
+
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>Creer la structure de base</h4>
+                <p>Executez ces commandes dans le terminal:</p>
+            </div>
+        </div>
+
+        <div class="terminal">
+            <span class="prompt">$</span> <span class="command">mkdir -p ~/GTM_Workspace/{transcripts,accounts,playbooks,competitive,weekly_notes}</span><br>
+            <span class="prompt">$</span> <span class="command">cd ~/GTM_Workspace</span><br>
+            <span class="prompt">$</span> <span class="command">touch CLAUDE.md</span>
+        </div>
+
+        <div class="img-container">
+            <div class="img-placeholder">
+                <div class="number">IMAGE 06</div>
+                <div class="desc">Finder montrant la structure de dossiers creee</div>
+            </div>
+        </div>
+
+        <h3>2.2 Format des fichiers</h3>
+
+        <h4>Format transcript (exemple)</h4>
+
+        <pre><code># Discovery Call - Doctolib
+**Date:** 2025-01-15
+**Participants:** Jean Dupont (CTO), Marie Martin (VP Eng)
+**Duree:** 45 min
+
+## Contexte
+Doctolib cherche a automatiser leur pipeline de leads...
+
+## Points cles
+- Utilisent actuellement Salesforce + Outreach
+- Pain point: pas de visibilite sur les signaux d'intent
+- Budget: 50-80k/an
+- Timeline: decision Q2
+
+## Objections soulevees
+- "On a deja essaye Clay, c'etait complique"
+- Inquietude sur la compliance RGPD
+
+## Next steps
+- Demo technique semaine prochaine
+- Envoyer case study fintech
+
+## Verbatim important
+> "Notre plus gros probleme c'est qu'on ne sait pas qui est chaud"
+</code></pre>
+
+        <div class="img-container">
+            <div class="img-placeholder">
+                <div class="number">IMAGE 07</div>
+                <div class="desc">Fichier transcript ouvert dans VS Code ou editeur texte</div>
+            </div>
+        </div>
+
+        <h4>Format fiche compte (exemple)</h4>
+
+        <pre><code># Doctolib
+
+## Infos generales
+- **Secteur:** HealthTech
+- **Taille:** 2500+ employes
+- **Siege:** Paris
+- **Tech stack:** Salesforce, Outreach, Snowflake
+
+## Contacts
+- Jean Dupont, CTO - jean@doctolib.fr
+- Marie Martin, VP Engineering - marie@doctolib.fr
+
+## Historique interactions
+| Date | Type | Sujet | Status |
+|------|------|-------|--------|
+| 2025-01-15 | Discovery | Premier call | Done |
+| 2025-01-22 | Demo | Demo technique | Scheduled |
+
+## Notes strategiques
+- Champion interne: Marie (VP Eng)
+- Blocker potentiel: equipe Legal sur RGPD
+- Competitor en place: Outreach
+
+## Deal info
+- **Valeur estimee:** 75k/an
+- **Stage:** Discovery
+- **Proba:** 30%
+</code></pre>
+
+        <div class="img-container">
+            <div class="img-placeholder">
+                <div class="number">IMAGE 08</div>
+                <div class="desc">Fichier account ouvert montrant la structure</div>
+            </div>
+        </div>
+
+        <!-- PARTIE 3 -->
+        <h2 id="partie-3">Partie 3: Le fichier CLAUDE.md</h2>
+
+        <p>Le fichier <code>CLAUDE.md</code> est <strong>le plus important</strong>. C'est la memoire permanente de Claude - il le lit automatiquement a chaque session.</p>
+
+        <div class="callout callout-warning">
+            <div class="callout-title">⚠️ Placement critique</div>
+            <p>Le fichier <code>CLAUDE.md</code> doit etre a la racine du dossier ou vous lancez Claude Code. Il est lu automatiquement au demarrage.</p>
+        </div>
+
+        <h3>3.1 Structure du CLAUDE.md</h3>
+
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>Creer le fichier CLAUDE.md</h4>
+                <p>Voici un template complet pour GTM:</p>
+            </div>
+        </div>
+
+        <pre><code># CLAUDE.md - Contexte GTM
+
+## Qui je suis
+Je suis [Ton nom], GTM Engineer chez [Entreprise].
+Mon role: generer des meetings qualifies pour l'equipe sales.
+
+## Mon ICP (Ideal Customer Profile)
+- **Secteur:** SaaS B2B, Fintech, HealthTech
+- **Taille:** 50-500 employes
+- **Geo:** France, Benelux
+- **Personas cibles:** CTO, VP Engineering, Head of Growth
+- **Signaux d'achat:** Levee de fonds recente, recrutement tech, nouveau CTO
+
+## Stack actuel
+- **Enrichissement:** Clay + Apollo
+- **Outreach LinkedIn:** HeyReach
+- **Cold email:** Smartlead
+- **CRM:** HubSpot
+- **Transcription:** Meetily
+
+## Structure des fichiers
+- `/transcripts/` - Transcripts de mes calls (format: YYYY-MM-DD_company_type.md)
+- `/accounts/` - Fiches compte par entreprise
+- `/playbooks/` - Scripts et templates
+- `/competitive/` - Intel sur les concurrents
+- `/weekly_notes/` - Notes hebdomadaires
+
+## Comment m'aider
+
+### Avant un call
+- Lis la fiche compte dans /accounts/
+- Lis les transcripts precedents avec cette entreprise
+- Prepare 3-5 questions de discovery basees sur le contexte
+
+### Apres un call
+- Resume les points cles du transcript
+- Identifie les objections et next steps
+- Redige un email de follow-up
+
+### Analyse hebdo
+- Quelles objections reviennent le plus?
+- Quels comptes progressent/stagnent?
+- Suggestions d'actions
+
+## Ton style de communication
+- Direct et actionnable
+- Pas de fluff ou de phrases generiques
+- Propose des actions concretes
+- Utilise le contexte des fichiers, pas des reponses generiques
+</code></pre>
+
+        <div class="img-container">
+            <div class="img-placeholder">
+                <div class="number">IMAGE 09</div>
+                <div class="desc">Fichier CLAUDE.md ouvert dans un editeur avec le contenu complet</div>
+            </div>
+            <p class="img-caption">Le CLAUDE.md definit le contexte permanent pour toutes vos sessions</p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>Personnaliser selon votre contexte</h4>
+                <p>Adaptez les sections a votre realite: votre ICP, vos outils, votre facon de travailler.</p>
+            </div>
+        </div>
+
+        <div class="callout callout-tip">
+            <div class="callout-title">✅ Best practice</div>
+            <p>Mettez a jour votre CLAUDE.md regulierement. Ajoutez les patterns que vous remarquez, les preferences que vous developpez.</p>
+        </div>
+
+        <!-- PARTIE 4 -->
+        <h2 id="partie-4">Partie 4: Use cases GTM en action</h2>
+
+        <h3>4.1 Lancer Claude Code dans votre workspace</h3>
+
+        <div class="terminal">
+            <span class="prompt">$</span> <span class="command">cd ~/GTM_Workspace</span><br>
+            <span class="prompt">$</span> <span class="command">claude</span><br>
+            <br>
+            <span class="claude">╭─────────────────────────────────────────────────╮</span><br>
+            <span class="claude">│  Claude Code                                     │</span><br>
+            <span class="claude">│  Reading CLAUDE.md...                           │</span><br>
+            <span class="claude">│  Context loaded: GTM Workspace                  │</span><br>
+            <span class="claude">╰─────────────────────────────────────────────────╯</span><br>
+            <br>
+            <span class="output">How can I help you today?</span>
+        </div>
+
+        <div class="img-container">
+            <div class="img-placeholder">
+                <div class="number">IMAGE 10</div>
+                <div class="desc">Terminal avec Claude Code demarre, montrant le message de bienvenue</div>
+            </div>
+        </div>
+
+        <h3>4.2 Use case 1: Resume d'un call</h3>
+
+        <div class="terminal">
+            <span class="prompt">You:</span> <span class="command">Resume-moi le call avec Doctolib d'hier</span><br>
+            <br>
+            <span class="claude">Claude:</span> <span class="output">Je lis le transcript transcripts/2025-01/2025-01-15_doctolib_discovery.md...</span><br>
+            <br>
+            <span class="output">## Resume du call Doctolib (15 jan)</span><br>
+            <span class="output"></span><br>
+            <span class="output">**Participants:** Jean Dupont (CTO), Marie Martin (VP Eng)</span><br>
+            <span class="output"></span><br>
+            <span class="output">**Points cles:**</span><br>
+            <span class="output">- Cherchent a automatiser leur pipeline de leads</span><br>
+            <span class="output">- Pain principal: manque de visibilite sur les signaux d'intent</span><br>
+            <span class="output">- Budget 50-80k, decision prevue Q2</span><br>
+            <span class="output"></span><br>
+            <span class="output">**Objections a traiter:**</span><br>
+            <span class="output">1. "Deja essaye Clay, c'etait complique" → Proposer un setup guide</span><br>
+            <span class="output">2. Inquietude RGPD → Preparer doc compliance</span><br>
+            <span class="output"></span><br>
+            <span class="output">**Next steps:**</span><br>
+            <span class="output">- [ ] Demo technique semaine prochaine</span><br>
+            <span class="output">- [ ] Envoyer case study fintech</span>
+        </div>
+
+        <div class="img-container">
+            <div class="img-placeholder">
+                <div class="number">IMAGE 11</div>
+                <div class="desc">Terminal montrant la conversation complete avec le resume</div>
+            </div>
+        </div>
+
+        <h3>4.3 Use case 2: Preparation de call</h3>
+
+        <div class="terminal">
+            <span class="prompt">You:</span> <span class="command">Prepare-moi pour le call avec Alan demain. C'est une demo.</span><br>
+            <br>
+            <span class="claude">Claude:</span> <span class="output">Je consulte accounts/alan.md et les transcripts precedents...</span><br>
+            <br>
+            <span class="output">## Prep Demo Alan - 22 janvier</span><br>
+            <span class="output"></span><br>
+            <span class="output">**Contexte compte:**</span><br>
+            <span class="output">- HealthTech, 300 employes, leve 50M en Series C</span><br>
+            <span class="output">- Stack actuel: Salesforce + Lemlist (pas satisfaits)</span><br>
+            <span class="output">- Champion: Sophie (Head of Growth)</span><br>
+            <span class="output"></span><br>
+            <span class="output">**A mettre en avant dans la demo:**</span><br>
+            <span class="output">1. Integration native Salesforce (leur pain point)</span><br>
+            <span class="output">2. Waterfall enrichment (reduire leurs couts Apollo)</span><br>
+            <span class="output">3. Case study sante: montrer le use case Doctolib</span><br>
+            <span class="output"></span><br>
+            <span class="output">**Questions a poser:**</span><br>
+            <span class="output">- Qui d'autre sera implique dans la decision?</span><br>
+            <span class="output">- Quel est leur volume mensuel d'outreach?</span><br>
+            <span class="output">- Timeline ideale de mise en place?</span><br>
+            <span class="output"></span><br>
+            <span class="output">**Risques a anticiper:**</span><br>
+            <span class="output">- Competitor Outreach deja en discussion (mentionne dans le dernier call)</span>
+        </div>
+
+        <div class="img-container">
+            <div class="img-placeholder">
+                <div class="number">IMAGE 12</div>
+                <div class="desc">Terminal avec la preparation de call complete</div>
+            </div>
+        </div>
+
+        <h3>4.4 Use case 3: Analyse hebdomadaire</h3>
+
+        <div class="terminal">
+            <span class="prompt">You:</span> <span class="command">Analyse mes calls de cette semaine. Quelles objections reviennent?</span><br>
+            <br>
+            <span class="claude">Claude:</span> <span class="output">J'analyse les 6 transcripts de transcripts/2025-01/...</span><br>
+            <br>
+            <span class="output">## Analyse semaine 3 (15-19 janvier)</span><br>
+            <span class="output"></span><br>
+            <span class="output">**6 calls analyses**</span><br>
+            <span class="output"></span><br>
+            <span class="output">**Top 3 objections:**</span><br>
+            <span class="output">1. "C'est trop cher" - 3 occurrences (Qonto, Pennylane, Swile)</span><br>
+            <span class="output">   → Suggestion: preparer ROI calculator</span><br>
+            <span class="output"></span><br>
+            <span class="output">2. "On n'a pas le temps de setup" - 2 occurrences</span><br>
+            <span class="output">   → Suggestion: proposer onboarding done-for-you</span><br>
+            <span class="output"></span><br>
+            <span class="output">3. "Notre equipe n'est pas technique" - 2 occurrences</span><br>
+            <span class="output">   → Suggestion: mettre en avant le no-code</span><br>
+            <span class="output"></span><br>
+            <span class="output">**Patterns positifs:**</span><br>
+            <span class="output">- L'enrichissement waterfall interesse tout le monde</span><br>
+            <span class="output">- Le case study fintech fait mouche</span><br>
+            <span class="output"></span><br>
+            <span class="output">**Comptes qui progressent:**</span><br>
+            <span class="output">- Alan: demo programmee ✅</span><br>
+            <span class="output">- Doctolib: interet confirme ✅</span><br>
+            <span class="output"></span><br>
+            <span class="output">**Comptes a relancer:**</span><br>
+            <span class="output">- Qonto: pas de reponse depuis 5 jours</span>
+        </div>
+
+        <div class="img-container">
+            <div class="img-placeholder">
+                <div class="number">IMAGE 13</div>
+                <div class="desc">Terminal montrant l'analyse hebdomadaire complete</div>
+            </div>
+            <p class="img-caption">Claude analyse tous vos transcripts pour identifier les patterns</p>
+        </div>
+
+        <h3>4.5 Use case 4: Rediger un follow-up</h3>
+
+        <div class="terminal">
+            <span class="prompt">You:</span> <span class="command">Ecris le follow-up email pour Doctolib apres le call de mardi</span><br>
+            <br>
+            <span class="claude">Claude:</span> <span class="output">Base sur le transcript et ton playbook follow_up_templates.md...</span><br>
+            <br>
+            <span class="output">---</span><br>
+            <span class="output">Subject: Suite a notre echange - Next steps Doctolib x [Entreprise]</span><br>
+            <span class="output"></span><br>
+            <span class="output">Jean, Marie,</span><br>
+            <span class="output"></span><br>
+            <span class="output">Merci pour votre temps mardi. Comme discute, voici les elements:</span><br>
+            <span class="output"></span><br>
+            <span class="output">1. **Case study fintech** en PJ - Pennylane a gagne 40% de temps sur leur enrichissement</span><br>
+            <span class="output"></span><br>
+            <span class="output">2. **RGPD**: Notre DPO peut organiser un call avec votre Legal</span><br>
+            <span class="output">   si besoin. On est certifie et toutes les donnees restent en EU.</span><br>
+            <span class="output"></span><br>
+            <span class="output">3. **Demo technique**: Je propose jeudi 24 a 14h?</span><br>
+            <span class="output">   Je vous montrerai le setup Clay en 15 min - beaucoup plus</span><br>
+            <span class="output">   simple que ce que vous avez teste avant.</span><br>
+            <span class="output"></span><br>
+            <span class="output">Dispo pour caler ca?</span><br>
+            <span class="output"></span><br>
+            <span class="output">[Signature]</span><br>
+            <span class="output">---</span>
+        </div>
+
+        <div class="img-container">
+            <div class="img-placeholder">
+                <div class="number">IMAGE 14</div>
+                <div class="desc">Terminal montrant l'email de follow-up genere</div>
+            </div>
+        </div>
+
+        <!-- PARTIE 5 -->
+        <h2 id="partie-5">Partie 5: Sync automatique des transcripts</h2>
+
+        <p>Pour que Claude Code soit vraiment utile, vos transcripts doivent arriver automatiquement dans le bon dossier.</p>
+
+        <h3>5.1 Option A: Meetily en local</h3>
+
+        <p>Si vous utilisez Meetily (cf Session 2.1), configurez le dossier de sortie:</p>
+
+        <div class="img-container">
+            <div class="img-placeholder">
+                <div class="number">IMAGE 15</div>
+                <div class="desc">Settings Meetily montrant le dossier de sortie configure vers GTM_Workspace/transcripts</div>
+            </div>
+        </div>
+
+        <h3>5.2 Option B: Sync cloud avec Otter/Fireflies</h3>
+
+        <p>Utilisez Zapier ou Make pour:</p>
+        <ol>
+            <li>Trigger: Nouveau transcript dans Otter</li>
+            <li>Action: Sauvegarder en markdown dans Dropbox/Google Drive</li>
+            <li>Sync local avec le dossier GTM_Workspace</li>
+        </ol>
+
+        <div class="img-container">
+            <div class="img-placeholder">
+                <div class="number">IMAGE 16</div>
+                <div class="desc">Workflow Zapier: Otter -> Format -> Google Drive</div>
+            </div>
+        </div>
+
+        <h3>5.3 Script de renommage automatique</h3>
+
+        <p>Les transcripts arrivent souvent avec des noms generiques. Ce script les renomme proprement:</p>
+
+        <pre><code>#!/bin/bash
+# rename_transcripts.sh
+
+cd ~/GTM_Workspace/transcripts/$(date +%Y-%m)
+
+for file in *.md; do
+    # Extrait la date et le nom de l'entreprise du contenu
+    # Renomme en YYYY-MM-DD_company_type.md
+    # ... (script complet fourni dans les ressources)
+done
+</code></pre>
+
+        <div class="img-container">
+            <div class="img-placeholder">
+                <div class="number">IMAGE 17</div>
+                <div class="desc">Terminal montrant le script en action avec les fichiers renommes</div>
+            </div>
+        </div>
+
+        <div class="callout callout-tip">
+            <div class="callout-title">✅ Pro tip: Alias utiles</div>
+            <p>Ajoutez ces alias a votre <code>~/.zshrc</code>:</p>
+            <pre><code>alias gtm="cd ~/GTM_Workspace && claude"
+alias transcripts="cd ~/GTM_Workspace/transcripts && ls -la"</code></pre>
+        </div>
+
+        <!-- RESSOURCES -->
+        <h2 id="ressources">Ressources & Templates</h2>
+
+        <div class="callout callout-info">
+            <div class="callout-title">📦 Telechargements</div>
+            <ul>
+                <li><strong>Template CLAUDE.md</strong> - Fichier de contexte pre-configure pour GTM</li>
+                <li><strong>Structure dossiers</strong> - Script pour creer l'arborescence complete</li>
+                <li><strong>Templates fichiers</strong> - Formats transcript, account, playbook</li>
+                <li><strong>Script rename</strong> - Renommage automatique des transcripts</li>
+                <li><strong>10 prompts GTM</strong> - Les requetes les plus utiles</li>
+            </ul>
+        </div>
+
+        <h3>Les 10 prompts GTM essentiels</h3>
+
+        <ol>
+            <li><code>Resume le dernier call avec [Account]</code></li>
+            <li><code>Prepare-moi pour le call avec [Account] - c'est un [type]</code></li>
+            <li><code>Quelles objections sont revenues cette semaine?</code></li>
+            <li><code>Ecris un follow-up pour [Account] base sur le dernier call</code></li>
+            <li><code>Compare les objections de [Account A] et [Account B]</code></li>
+            <li><code>Quels comptes n'ont pas eu de touchpoint depuis 7 jours?</code></li>
+            <li><code>Genere 3 questions de discovery pour [Account] base sur leur contexte</code></li>
+            <li><code>Resume mes notes de la semaine</code></li>
+            <li><code>Update la fiche account [Account] avec les infos du dernier call</code></li>
+            <li><code>Quels sont mes next steps pour cette semaine?</code></li>
+        </ol>
+
+        <h3>Prochaines etapes</h3>
+        <ul>
+            <li>Session 2.3: <a href="session-2-3-intent-data.html">Intent Data & Signal-Based Outreach</a></li>
+            <li>Alimenter votre workspace avec vos vrais transcripts</li>
+            <li>Enrichir votre CLAUDE.md au fil de l'usage</li>
+        </ul>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-nav">
+            <div class="prev">
+                <div class="label">Precedent</div>
+                <a href="session-2-1-recording-transcription.html">← Session 2.1: Recording & Transcription</a>
+            </div>
+            <div class="next">
+                <div class="label">Suivant</div>
+                <a href="session-2-3-intent-data.html">Session 2.3: Intent Data →</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
