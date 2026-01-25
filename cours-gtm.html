@@ -45,17 +45,23 @@
         .btn-dark:hover { background: var(--gray-600); }
 
         .hero { max-width: 900px; margin: 0 auto; padding: 140px 32px 60px; text-align: center; }
-        .hero-tag { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 12px; padding: 6px 14px; background: #f3e8ff; color: var(--purple); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .hero h1 { font-size: 42px; font-weight: 700; line-height: 1.2; margin-bottom: 20px; }
-        .hero p { font-size: 18px; color: var(--gray-600); max-width: 650px; margin: 0 auto; }
+        .hero h1 { font-size: 36px; font-weight: 700; line-height: 1.2; margin-bottom: 12px; }
+        .hero p { font-size: 16px; color: var(--gray-600); max-width: 550px; margin: 0 auto; }
 
-        .intro { max-width: 900px; margin: 0 auto; padding: 0 32px 60px; }
-        .intro-box { background: var(--gray-50); border: 1px solid var(--gray-200); padding: 32px; }
-        .intro-box h2 { font-size: 20px; margin-bottom: 16px; }
-        .intro-box p { color: var(--gray-600); margin-bottom: 16px; }
-        .intro-box ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
-        .intro-box li { display: flex; align-items: center; gap: 8px; font-size: 14px; }
-        .intro-box li::before { content: ""; width: 6px; height: 6px; background: var(--purple); border-radius: 50%; }
+        /* Level navigation */
+        .level-nav { display: flex; justify-content: center; align-items: center; gap: 16px; max-width: 800px; margin: 0 auto 50px; padding: 0 32px; }
+        .level-nav-item { display: flex; flex-direction: column; align-items: center; padding: 20px 28px; border: 2px solid var(--gray-200); background: var(--white); text-decoration: none; transition: all 0.15s; min-width: 140px; }
+        .level-nav-item:hover { border-color: var(--black); transform: translateY(-2px); }
+        .level-nav-item.beginner:hover { border-color: var(--green); }
+        .level-nav-item.intermediate:hover { border-color: var(--orange); }
+        .level-nav-item.advanced:hover { border-color: var(--purple); }
+        .level-num { font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 700; line-height: 1; }
+        .level-nav-item.beginner .level-num { color: var(--green); }
+        .level-nav-item.intermediate .level-num { color: var(--orange); }
+        .level-nav-item.advanced .level-num { color: var(--purple); }
+        .level-name { font-weight: 600; font-size: 14px; margin-top: 6px; color: var(--black); }
+        .level-count { font-size: 12px; color: var(--gray-500); margin-top: 2px; }
+        .level-arrow { font-size: 20px; color: var(--gray-400); }
 
         .courses-section { max-width: 1100px; margin: 0 auto; padding: 0 32px 80px; }
 
@@ -78,12 +84,10 @@
         .course-number { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--gray-400); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
         .course-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 12px; line-height: 1.4; }
         .course-card p { font-size: 14px; color: var(--gray-500); margin-bottom: 16px; line-height: 1.6; }
-        .course-topics { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-        .course-topic { font-family: 'IBM Plex Mono', monospace; font-size: 10px; padding: 4px 8px; background: var(--gray-100); color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.5px; }
-        .course-meta { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid var(--gray-100); }
+        .course-tools-list { font-size: 13px; color: var(--gray-500); margin-top: 12px; }
+        .course-tools-list strong { color: var(--gray-600); font-weight: 500; }
+        .course-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--gray-100); }
         .course-duration { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--gray-500); }
-        .course-tools { display: flex; gap: 6px; }
-        .course-tool { font-size: 14px; }
 
         /* Modal */
         .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; }
@@ -107,13 +111,6 @@
         .modal-close:hover { color: var(--black); background: none; }
         .modal { position: relative; }
 
-        .tools-section { background: var(--black); color: var(--white); padding: 60px 32px; margin-bottom: 60px; }
-        .tools-section h2 { font-size: 28px; text-align: center; margin-bottom: 40px; }
-        .tools-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
-        .tool-card { text-align: center; padding: 24px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
-        .tool-card h4 { font-size: 16px; margin-bottom: 8px; }
-        .tool-card p { font-size: 13px; color: var(--gray-400); }
-
         .cta-section { background: var(--gray-50); padding: 60px 32px; text-align: center; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); }
         .cta-section h2 { font-size: 28px; margin-bottom: 12px; }
         .cta-section p { color: var(--gray-600); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
@@ -136,8 +133,12 @@
 
         @media (max-width: 768px) {
             .nav-links .btn { display: none; }
-            .hero { padding: 120px 20px 40px; }
-            .hero h1 { font-size: 32px; }
+            .hero { padding: 120px 20px 30px; }
+            .hero h1 { font-size: 28px; }
+            .level-nav { flex-direction: column; gap: 12px; padding: 0 20px; margin-bottom: 40px; }
+            .level-arrow { transform: rotate(90deg); }
+            .level-nav-item { width: 100%; flex-direction: row; justify-content: flex-start; gap: 16px; padding: 16px 20px; }
+            .level-num { font-size: 24px; }
             .courses-section { padding: 0 20px 60px; }
             .course-grid { grid-template-columns: 1fr; }
             .footer-main { grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -170,23 +171,30 @@
     </nav>
 
     <section class="hero">
-        <span class="hero-tag">Portfolio Training</span>
         <h1>Formation GTM Engineer</h1>
-        <p>Sessions de 2h par mois pour transformer vos ops en machines de growth. Du setup d'outils au workflow IA en passant par l'outreach automatise.</p>
+        <p>12 sessions de 2h pour maitriser le stack GTM moderne. De la prospection basique aux agents IA.</p>
     </section>
 
-    <section class="intro">
-        <div class="intro-box">
-            <h2>Format des sessions</h2>
-            <p>Chaque mois, une session de 2h en live avec demos pratiques, Q&A, et ressources a implementer immediatement.</p>
-            <ul>
-                <li>Live demo + hands-on</li>
-                <li>Templates & scripts fournis</li>
-                <li>Replay disponible 30 jours</li>
-                <li>Slack support entre sessions</li>
-            </ul>
-        </div>
-    </section>
+    <!-- Navigation par niveau -->
+    <nav class="level-nav">
+        <a href="#niveau-1" class="level-nav-item beginner">
+            <span class="level-num">1</span>
+            <span class="level-name">Fondations</span>
+            <span class="level-count">4 sessions</span>
+        </a>
+        <span class="level-arrow">→</span>
+        <a href="#niveau-2" class="level-nav-item intermediate">
+            <span class="level-num">2</span>
+            <span class="level-name">Automatisation</span>
+            <span class="level-count">4 sessions</span>
+        </a>
+        <span class="level-arrow">→</span>
+        <a href="#niveau-3" class="level-nav-item advanced">
+            <span class="level-num">3</span>
+            <span class="level-name">Infrastructure</span>
+            <span class="level-count">4 sessions</span>
+        </a>
+    </nav>
 
     <!-- NIVEAU 1: BEGINNER -->
     <section class="courses-section">
@@ -201,72 +209,40 @@
                 <div class="course-card available" data-course="cours/session-1-1-clay-xray.html" onclick="handleCourseClick(this)">
                     <div class="course-number">Session 1.1</div>
                     <h3>Setup Clay + Enrichissement Data</h3>
-                    <p>Configurer Clay de zero, connecter vos sources, et enrichir vos leads automatiquement. Inclut les recherches X-Ray pour eviter de payer tous les leads.</p>
-                    <div class="course-topics">
-                        <span class="course-topic">Clay basics</span>
-                        <span class="course-topic">Waterfall enrichment</span>
-                        <span class="course-topic">X-Ray Google</span>
-                    </div>
+                    <p>Configurer Clay, connecter vos sources, enrichir vos leads. Inclut les recherches X-Ray pour sourcer sans payer.</p>
+                    <div class="course-tools-list"><strong>Outils:</strong> Clay, Apollo, X-Ray Google</div>
                     <div class="course-meta">
                         <span class="course-duration">2h</span>
-                        <div class="course-tools">
-                            <span class="course-tool" title="Clay">🧱</span>
-                            <span class="course-tool" title="Apollo">🚀</span>
-                        </div>
                     </div>
                 </div>
 
                 <div class="course-card coming-soon">
                     <div class="course-number">Session 1.2</div>
                     <h3>Outreach Stack: HeyReach + Smartlead</h3>
-                    <p>Mettre en place votre infrastructure d'outreach multicanal. LinkedIn + Email synchronises avec warmup et rotation de comptes.</p>
-                    <div class="course-topics">
-                        <span class="course-topic">HeyReach setup</span>
-                        <span class="course-topic">Smartlead config</span>
-                        <span class="course-topic">Warmup strategy</span>
-                    </div>
+                    <p>Infrastructure d'outreach multicanal. LinkedIn + Email avec warmup et rotation de comptes.</p>
+                    <div class="course-tools-list"><strong>Outils:</strong> HeyReach, Smartlead</div>
                     <div class="course-meta">
                         <span class="course-duration">2h</span>
-                        <div class="course-tools">
-                            <span class="course-tool" title="HeyReach">📨</span>
-                            <span class="course-tool" title="Smartlead">📧</span>
-                        </div>
                     </div>
                 </div>
 
                 <div class="course-card coming-soon">
                     <div class="course-number">Session 1.3</div>
                     <h3>CRM & Pipeline: HubSpot Ops</h3>
-                    <p>Structurer HubSpot pour le GTM: proprietes custom, workflows d'enrichissement, sync bidirectionnel avec vos outils outbound.</p>
-                    <div class="course-topics">
-                        <span class="course-topic">HubSpot workflows</span>
-                        <span class="course-topic">Lead scoring</span>
-                        <span class="course-topic">Sync Clay/HubSpot</span>
-                    </div>
+                    <p>Structurer HubSpot pour le GTM: workflows, scoring, sync bidirectionnel avec Clay.</p>
+                    <div class="course-tools-list"><strong>Outils:</strong> HubSpot, Clay</div>
                     <div class="course-meta">
                         <span class="course-duration">2h</span>
-                        <div class="course-tools">
-                            <span class="course-tool" title="HubSpot">🟠</span>
-                            <span class="course-tool" title="Clay">🧱</span>
-                        </div>
                     </div>
                 </div>
 
                 <div class="course-card coming-soon">
                     <div class="course-number">Session 1.4</div>
-                    <h3>Copywriting Outbound: Templates qui convertissent</h3>
-                    <p>Ecrire des sequences qui generent des reponses. Structures prouvees, A/B testing, et personnalisation a scale avec variables Clay.</p>
-                    <div class="course-topics">
-                        <span class="course-topic">Cold email structure</span>
-                        <span class="course-topic">LinkedIn DM</span>
-                        <span class="course-topic">Variables dynamiques</span>
-                    </div>
+                    <h3>Copywriting Outbound</h3>
+                    <p>Ecrire des sequences qui convertissent. Structures prouvees, A/B testing, personnalisation a scale.</p>
+                    <div class="course-tools-list"><strong>Outils:</strong> Templates, Variables Clay</div>
                     <div class="course-meta">
                         <span class="course-duration">2h</span>
-                        <div class="course-tools">
-                            <span class="course-tool" title="Templates">📝</span>
-                            <span class="course-tool" title="Clay">🧱</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -283,73 +259,41 @@
             <div class="course-grid">
                 <div class="course-card coming-soon">
                     <div class="course-number">Session 2.1</div>
-                    <h3>Enregistrer tous vos calls avec transcription IA</h3>
-                    <p>Setup complet pour capturer, transcrire et analyser automatiquement tous vos calls. Gemini/Whisper pour la transcription, stockage structure.</p>
-                    <div class="course-topics">
-                        <span class="course-topic">Meetily/Otter setup</span>
-                        <span class="course-topic">Whisper API</span>
-                        <span class="course-topic">Transcript storage</span>
-                    </div>
+                    <h3>Call Recording + Transcription IA</h3>
+                    <p>Capturer, transcrire et analyser automatiquement tous vos calls avec Gemini/Whisper.</p>
+                    <div class="course-tools-list"><strong>Outils:</strong> Meetily, Whisper, Gemini</div>
                     <div class="course-meta">
                         <span class="course-duration">2h</span>
-                        <div class="course-tools">
-                            <span class="course-tool" title="Gemini">💎</span>
-                            <span class="course-tool" title="Whisper">🎙️</span>
-                        </div>
                     </div>
                 </div>
 
                 <div class="course-card available" data-course="cours/session-2-2-claude-code-gtm.html" onclick="handleCourseClick(this)">
                     <div class="course-number">Session 2.2</div>
                     <h3>Claude Code comme copilote GTM</h3>
-                    <p>Synchroniser vos transcripts et docs dans Claude Code pour avoir un assistant qui connait votre contexte. Dossier local ou cloud sync.</p>
-                    <div class="course-topics">
-                        <span class="course-topic">Claude Code setup</span>
-                        <span class="course-topic">Context management</span>
-                        <span class="course-topic">Memory patterns</span>
-                    </div>
+                    <p>Synchroniser vos transcripts et docs pour avoir un assistant qui connait votre contexte.</p>
+                    <div class="course-tools-list"><strong>Outils:</strong> Claude Code, Terminal</div>
                     <div class="course-meta">
                         <span class="course-duration">2h</span>
-                        <div class="course-tools">
-                            <span class="course-tool" title="Claude">🤖</span>
-                            <span class="course-tool" title="Terminal">⌨️</span>
-                        </div>
                     </div>
                 </div>
 
                 <div class="course-card coming-soon">
                     <div class="course-number">Session 2.3</div>
-                    <h3>Intent Data & Signal-Based Outreach</h3>
-                    <p>Detecter les signaux d'achat: levees de fonds, recrutements, technographics. Trigger des sequences automatiquement sur intent.</p>
-                    <div class="course-topics">
-                        <span class="course-topic">Buying signals</span>
-                        <span class="course-topic">Clay triggers</span>
-                        <span class="course-topic">Real-time alerts</span>
-                    </div>
+                    <h3>Signal-Based Outreach</h3>
+                    <p>Detecter les signaux d'achat et trigger des sequences automatiquement sur intent.</p>
+                    <div class="course-tools-list"><strong>Outils:</strong> Clay Triggers, Webhooks</div>
                     <div class="course-meta">
                         <span class="course-duration">2h</span>
-                        <div class="course-tools">
-                            <span class="course-tool" title="Clay">🧱</span>
-                            <span class="course-tool" title="Webhooks">🔗</span>
-                        </div>
                     </div>
                 </div>
 
                 <div class="course-card coming-soon">
                     <div class="course-number">Session 2.4</div>
-                    <h3>Voice AI: Messages vocaux personnalises</h3>
-                    <p>Cloner votre voix et envoyer des vocaux LinkedIn/WhatsApp a scale. ElevenLabs + integration outbound pour 10x les reply rates.</p>
-                    <div class="course-topics">
-                        <span class="course-topic">Voice cloning</span>
-                        <span class="course-topic">ElevenLabs API</span>
-                        <span class="course-topic">WhatsApp automation</span>
-                    </div>
+                    <h3>Voice AI: Messages vocaux a scale</h3>
+                    <p>Cloner votre voix et envoyer des vocaux LinkedIn/WhatsApp personnalises.</p>
+                    <div class="course-tools-list"><strong>Outils:</strong> ElevenLabs, WhatsApp</div>
                     <div class="course-meta">
                         <span class="course-duration">2h</span>
-                        <div class="course-tools">
-                            <span class="course-tool" title="ElevenLabs">🔊</span>
-                            <span class="course-tool" title="WhatsApp">📱</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -366,114 +310,43 @@
             <div class="course-grid">
                 <div class="course-card coming-soon">
                     <div class="course-number">Session 3.1</div>
-                    <h3>Orchestration avec n8n/Make</h3>
-                    <p>Creer des workflows complexes qui connectent tous vos outils. Enrichissement, scoring, routing, et actions automatiques en cascade.</p>
-                    <div class="course-topics">
-                        <span class="course-topic">n8n self-hosted</span>
-                        <span class="course-topic">Complex workflows</span>
-                        <span class="course-topic">Error handling</span>
-                    </div>
+                    <h3>Orchestration n8n / Make</h3>
+                    <p>Workflows complexes qui connectent tous vos outils avec actions automatiques en cascade.</p>
+                    <div class="course-tools-list"><strong>Outils:</strong> n8n, Make</div>
                     <div class="course-meta">
                         <span class="course-duration">2h</span>
-                        <div class="course-tools">
-                            <span class="course-tool" title="n8n">⚡</span>
-                            <span class="course-tool" title="Make">🔄</span>
-                        </div>
                     </div>
                 </div>
 
                 <div class="course-card coming-soon">
                     <div class="course-number">Session 3.2</div>
-                    <h3>Scraping Custom avec Python & APIs</h3>
-                    <p>Aller au-dela des outils no-code. Scripts Python pour scraper LinkedIn, job boards, annuaires. Proxies, rate limiting, data cleaning.</p>
-                    <div class="course-topics">
-                        <span class="course-topic">Python scraping</span>
-                        <span class="course-topic">Proxy rotation</span>
-                        <span class="course-topic">Data pipelines</span>
-                    </div>
+                    <h3>Scraping Custom Python</h3>
+                    <p>Scripts pour scraper LinkedIn, job boards, annuaires. Proxies, rate limiting, data cleaning.</p>
+                    <div class="course-tools-list"><strong>Outils:</strong> Python, APIs</div>
                     <div class="course-meta">
                         <span class="course-duration">2h</span>
-                        <div class="course-tools">
-                            <span class="course-tool" title="Python">🐍</span>
-                            <span class="course-tool" title="APIs">🔌</span>
-                        </div>
                     </div>
                 </div>
 
                 <div class="course-card coming-soon">
                     <div class="course-number">Session 3.3</div>
                     <h3>AI Agents pour GTM</h3>
-                    <p>Construire des agents autonomes qui qualifient, enrichissent et engagent. Claude API, function calling, et orchestration multi-agents.</p>
-                    <div class="course-topics">
-                        <span class="course-topic">Claude API</span>
-                        <span class="course-topic">Function calling</span>
-                        <span class="course-topic">Agent loops</span>
-                    </div>
+                    <p>Agents autonomes qui qualifient, enrichissent et engagent. Function calling et multi-agents.</p>
+                    <div class="course-tools-list"><strong>Outils:</strong> Claude API, LangChain</div>
                     <div class="course-meta">
                         <span class="course-duration">2h</span>
-                        <div class="course-tools">
-                            <span class="course-tool" title="Claude API">🤖</span>
-                            <span class="course-tool" title="LangChain">🦜</span>
-                        </div>
                     </div>
                 </div>
 
                 <div class="course-card coming-soon">
                     <div class="course-number">Session 3.4</div>
-                    <h3>Analytics & Attribution GTM</h3>
-                    <p>Mesurer ce qui marche vraiment. Setup tracking, dashboards custom, attribution multi-touch, et optimisation data-driven.</p>
-                    <div class="course-topics">
-                        <span class="course-topic">UTM strategy</span>
-                        <span class="course-topic">Metabase dashboards</span>
-                        <span class="course-topic">Attribution models</span>
-                    </div>
+                    <h3>Analytics & Attribution</h3>
+                    <p>Dashboards custom, attribution multi-touch, et optimisation data-driven.</p>
+                    <div class="course-tools-list"><strong>Outils:</strong> Metabase, SQL</div>
                     <div class="course-meta">
                         <span class="course-duration">2h</span>
-                        <div class="course-tools">
-                            <span class="course-tool" title="Metabase">📊</span>
-                            <span class="course-tool" title="SQL">💾</span>
-                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TOOLS SECTION -->
-    <section class="tools-section">
-        <h2>Stack couvert dans les formations</h2>
-        <div class="tools-grid">
-            <div class="tool-card">
-                <h4>Clay</h4>
-                <p>Enrichissement & waterfall</p>
-            </div>
-            <div class="tool-card">
-                <h4>HeyReach</h4>
-                <p>Automation LinkedIn</p>
-            </div>
-            <div class="tool-card">
-                <h4>Smartlead</h4>
-                <p>Cold email a scale</p>
-            </div>
-            <div class="tool-card">
-                <h4>Claude Code</h4>
-                <p>Copilote IA en terminal</p>
-            </div>
-            <div class="tool-card">
-                <h4>n8n / Make</h4>
-                <p>Orchestration workflows</p>
-            </div>
-            <div class="tool-card">
-                <h4>ElevenLabs</h4>
-                <p>Voice AI & cloning</p>
-            </div>
-            <div class="tool-card">
-                <h4>HubSpot</h4>
-                <p>CRM & automation</p>
-            </div>
-            <div class="tool-card">
-                <h4>Python</h4>
-                <p>Scripts & scraping custom</p>
             </div>
         </div>
     </section>
@@ -507,7 +380,7 @@
             </div>            <div class="footer-col">
                 <h5>Formation</h5>
                 <ul>
-                    <li><a href="cours-gtm.html">Cours GTM Engineer</a></li>
+                    <li><a href="#" class="locked-link" onclick="openCoursModal(); return false;"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;vertical-align:middle;"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>Cours GTM Engineer</a></li>
                 </ul>
             </div>
             <div class="footer-col">
