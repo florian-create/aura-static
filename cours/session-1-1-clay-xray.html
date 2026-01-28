@@ -160,12 +160,12 @@
         <span class="header-tag">Niveau 1 - Fondations</span>
         <h1>Setup Clay + Enrichissement Data & X-Ray Google</h1>
         <div class="header-meta">
-            <span>⏱️ 2 heures</span>
-            <span>📊 Debutant</span>
-            <span>🔧 Clay, Apollo, Google</span>
+            <span>⏱️ 1 heure</span>
+            <span>📊 Débutant</span>
+            <span>🔧 Clay, Google</span>
         </div>
         <p class="header-intro">
-            Configurer Clay de zero, maitriser l'enrichissement waterfall, et utiliser les recherches X-Ray Google pour trouver des leads LinkedIn sans payer Sales Navigator.
+            Configurer Clay de zéro et utiliser les recherches X-Ray Google pour trouver des leads LinkedIn sans payer Sales Navigator.
         </p>
     </header>
 
@@ -177,18 +177,15 @@
             <ul>
                 <li><a href="#intro">Introduction & Objectifs <span class="duration">5 min</span></a></li>
                 <li><a href="#partie-1">Partie 1: Setup initial Clay <span class="duration">30 min</span></a></li>
-                <li><a href="#partie-2">Partie 2: Waterfall Enrichment <span class="duration">45 min</span></a></li>
-                <li><a href="#partie-3">Partie 3: Hack X-Ray Google <span class="duration">30 min</span></a></li>
-                <li><a href="#partie-4">Partie 4: Hands-on & Debug <span class="duration">15 min</span></a></li>
+                <li><a href="#partie-2">Partie 2: Hack X-Ray Google <span class="duration">30 min</span></a></li>
                 <li><a href="#ressources">Ressources & Templates</a></li>
             </ul>
         </div>
 
         <!-- Outils -->
-        <h4>Outils utilises dans cette session</h4>
+        <h4>Outils utilisés dans cette session</h4>
         <div class="tools-list">
             <div class="tool-badge">🧱 Clay</div>
-            <div class="tool-badge">🚀 Apollo</div>
             <div class="tool-badge">🔍 Google Search</div>
             <div class="tool-badge">💼 LinkedIn</div>
         </div>
@@ -274,11 +271,8 @@
         </div>
 
         <div class="img-container">
-            <div class="img-placeholder">
-                <div class="number">IMAGE 05</div>
-                <div class="desc">Interface d'import CSV avec mapping des colonnes</div>
-            </div>
-            <p class="img-caption">Clay mappe automatiquement vos colonnes - verifiez que c'est correct</p>
+            <img src="images/session-1-1/05_clay_csv_import_mapping.png" alt="Interface d'import CSV avec mapping des colonnes" style="width:100%; border-radius:8px; border:1px solid #e0e0e0;">
+            <p class="img-caption">Clay mappe automatiquement vos colonnes - vérifiez que c'est correct</p>
         </div>
 
         <div class="callout callout-tip">
@@ -291,10 +285,7 @@ Marie,Martin,Alan,VP Engineering
         </div>
 
         <div class="img-container">
-            <div class="img-placeholder">
-                <div class="number">IMAGE 06</div>
-                <div class="desc">Table Clay avec les donnees importees (5-10 lignes visibles)</div>
-            </div>
+            <img src="images/session-1-1/06_clay_table_imported_data.png" alt="Table Clay avec les données importées" style="width:100%; border-radius:8px; border:1px solid #e0e0e0;">
         </div>
 
         <h3>1.3 Comprendre les credits Clay</h3>
@@ -307,147 +298,12 @@ Marie,Martin,Alan,VP Engineering
         </ul>
 
         <div class="img-container">
-            <div class="img-placeholder">
-                <div class="number">IMAGE 07</div>
-                <div class="desc">Page Settings > Billing montrant les credits restants</div>
-            </div>
-            <p class="img-caption">Surveillez votre consommation de credits dans Settings > Billing</p>
+            <img src="images/session-1-1/07_clay_billing_credits.png" alt="Page Settings > Billing montrant les crédits restants" style="width:100%; border-radius:8px; border:1px solid #e0e0e0;">
+            <p class="img-caption">Surveillez votre consommation de crédits dans Settings > Billing</p>
         </div>
 
         <!-- PARTIE 2 -->
-        <h2 id="partie-2">Partie 2: Waterfall Enrichment</h2>
-
-        <p>Le principe du waterfall: enchainer plusieurs sources d'enrichissement. Si la premiere ne trouve pas l'info, on passe a la suivante.</p>
-
-        <div class="img-container">
-            <div class="img-placeholder">
-                <div class="number">IMAGE 08</div>
-                <div class="desc">Schema/diagramme du waterfall: Lead -> Source 1 -> Source 2 -> Source 3 -> Email trouve</div>
-            </div>
-            <p class="img-caption">Le waterfall essaie chaque source jusqu'a trouver l'email</p>
-        </div>
-
-        <h3>2.1 Connecter Apollo (source principale)</h3>
-
-        <div class="step">
-            <div class="step-number">1</div>
-            <div class="step-content">
-                <h4>Ajouter une colonne "Email"</h4>
-                <p>Cliquez sur le <code>+</code> a droite de vos colonnes pour ajouter une nouvelle colonne.</p>
-            </div>
-        </div>
-
-        <div class="img-container">
-            <div class="img-placeholder">
-                <div class="number">IMAGE 09</div>
-                <div class="desc">Bouton + pour ajouter une colonne, avec le menu deroulant ouvert</div>
-            </div>
-        </div>
-
-        <div class="step">
-            <div class="step-number">2</div>
-            <div class="step-content">
-                <h4>Chercher "Apollo" dans les enrichments</h4>
-                <p>Dans le panneau de droite, cherchez "Apollo" et selectionnez "Find Person Email".</p>
-            </div>
-        </div>
-
-        <div class="img-container">
-            <div class="img-placeholder">
-                <div class="number">IMAGE 10</div>
-                <div class="desc">Panneau Enrichments avec recherche "Apollo" et les options disponibles</div>
-            </div>
-        </div>
-
-        <div class="step">
-            <div class="step-number">3</div>
-            <div class="step-content">
-                <h4>Configurer l'enrichissement Apollo</h4>
-                <p>Mappez les champs: <code>first_name</code>, <code>last_name</code>, <code>company</code> vers les inputs Apollo.</p>
-            </div>
-        </div>
-
-        <div class="img-container">
-            <div class="img-placeholder">
-                <div class="number">IMAGE 11</div>
-                <div class="desc">Configuration Apollo: mapping first_name, last_name, company_name</div>
-            </div>
-            <p class="img-caption">Mappez vos colonnes vers les champs Apollo</p>
-        </div>
-
-        <div class="step">
-            <div class="step-number">4</div>
-            <div class="step-content">
-                <h4>Lancer l'enrichissement</h4>
-                <p>Cliquez "Run" pour enrichir toutes les lignes. Regardez les resultats apparaitre en temps reel.</p>
-            </div>
-        </div>
-
-        <div class="img-container">
-            <div class="img-placeholder">
-                <div class="number">IMAGE 12</div>
-                <div class="desc">Table avec colonne Email en cours d'enrichissement (loading states + resultats)</div>
-            </div>
-        </div>
-
-        <h3>2.2 Ajouter un fallback avec Dropcontact</h3>
-
-        <p>Apollo ne trouve pas tous les emails. On ajoute Dropcontact comme backup pour les lignes vides.</p>
-
-        <div class="step">
-            <div class="step-number">5</div>
-            <div class="step-content">
-                <h4>Ajouter une colonne "Email Fallback"</h4>
-                <p>Creez une nouvelle colonne et cherchez "Dropcontact" dans les enrichments.</p>
-            </div>
-        </div>
-
-        <div class="img-container">
-            <div class="img-placeholder">
-                <div class="number">IMAGE 13</div>
-                <div class="desc">Configuration Dropcontact avec condition "IF Email is empty"</div>
-            </div>
-        </div>
-
-        <div class="callout callout-warning">
-            <div class="callout-title">⚠️ Important: Condition sur le fallback</div>
-            <p>Configurez la condition: "Only run if Email column is empty". Sinon vous payez deux fois pour le meme lead!</p>
-        </div>
-
-        <div class="img-container">
-            <div class="img-placeholder">
-                <div class="number">IMAGE 14</div>
-                <div class="desc">Interface de condition Clay: "Run only if [Email] is empty"</div>
-            </div>
-        </div>
-
-        <h3>2.3 Fusionner les resultats</h3>
-
-        <div class="step">
-            <div class="step-number">6</div>
-            <div class="step-content">
-                <h4>Creer une colonne "Final Email"</h4>
-                <p>Utilisez une formule pour combiner: <code>IF(Email, Email, Email_Fallback)</code></p>
-            </div>
-        </div>
-
-        <div class="img-container">
-            <div class="img-placeholder">
-                <div class="number">IMAGE 15</div>
-                <div class="desc">Formule Clay pour fusionner les emails</div>
-            </div>
-        </div>
-
-        <div class="img-container">
-            <div class="img-placeholder">
-                <div class="number">IMAGE 16</div>
-                <div class="desc">Table finale avec colonnes Email, Email_Fallback, Final_Email remplies</div>
-            </div>
-            <p class="img-caption">Resultat: la colonne Final Email combine les deux sources</p>
-        </div>
-
-        <!-- PARTIE 3 -->
-        <h2 id="partie-3">Partie 3: Hack X-Ray Google</h2>
+        <h2 id="partie-2">Partie 2: Hack X-Ray Google</h2>
 
         <p>Sales Navigator coute $99/mois. Les recherches X-Ray Google sont gratuites et permettent de trouver les memes profils LinkedIn.</p>
 
@@ -456,7 +312,7 @@ Marie,Martin,Alan,VP Engineering
             <p>"X-Ray" = utiliser les operateurs de recherche Google pour fouiller a l'interieur d'un site specifique. On "radiographie" LinkedIn via Google.</p>
         </div>
 
-        <h3>3.1 Les operateurs de base</h3>
+        <h3>2.1 Les opérateurs de base</h3>
 
         <p>La syntaxe de base:</p>
         <pre><code>site:linkedin.com/in "Titre" "Ville" "Entreprise"</code></pre>
@@ -485,7 +341,7 @@ Marie,Martin,Alan,VP Engineering
             <p class="img-caption">Google trouve les profils LinkedIn publics correspondant a vos criteres</p>
         </div>
 
-        <h3>3.2 Operateurs avances</h3>
+        <h3>2.2 Opérateurs avancés</h3>
 
         <table style="width: 100%; margin: 20px 0; border-collapse: collapse;">
             <thead>
@@ -524,122 +380,43 @@ Marie,Martin,Alan,VP Engineering
             </tbody>
         </table>
 
-        <h3>3.3 Scraper les resultats dans Clay</h3>
+        <h3>2.3 Intégration directe dans Clay</h3>
+
+        <p>Bonne nouvelle: Clay intègre directement les recherches Google X-Ray! Plus besoin de copier-coller manuellement les URLs.</p>
 
         <div class="step">
             <div class="step-number">1</div>
             <div class="step-content">
-                <h4>Copier les URLs des resultats Google</h4>
-                <p>Utilisez une extension comme "Instant Data Scraper" ou copiez manuellement les URLs LinkedIn.</p>
+                <h4>Utiliser "Find People with Google" dans Clay</h4>
+                <p>Dans votre table Clay, ajoutez une nouvelle colonne et cherchez <strong>"Find People with Google"</strong> dans les enrichissements. Clay va automatiquement lancer des recherches X-Ray et récupérer les profils LinkedIn.</p>
             </div>
         </div>
 
         <div class="img-container">
-            <div class="img-placeholder">
-                <div class="number">IMAGE 20</div>
-                <div class="desc">Extension Instant Data Scraper en action sur les resultats Google</div>
-            </div>
-        </div>
-
-        <div class="step">
-            <div class="step-number">2</div>
-            <div class="step-content">
-                <h4>Importer les URLs dans Clay</h4>
-                <p>Creez une nouvelle table avec une colonne "linkedin_url".</p>
-            </div>
-        </div>
-
-        <div class="img-container">
-            <div class="img-placeholder">
-                <div class="number">IMAGE 21</div>
-                <div class="desc">Table Clay avec colonne linkedin_url remplie</div>
-            </div>
-        </div>
-
-        <div class="step">
-            <div class="step-number">3</div>
-            <div class="step-content">
-                <h4>Enrichir depuis l'URL LinkedIn</h4>
-                <p>Utilisez l'enrichissement "LinkedIn Profile" pour extraire nom, titre, entreprise depuis l'URL.</p>
-            </div>
-        </div>
-
-        <div class="img-container">
-            <div class="img-placeholder">
-                <div class="number">IMAGE 22</div>
-                <div class="desc">Configuration enrichissement "LinkedIn Profile" avec l'URL en input</div>
-            </div>
-        </div>
-
-        <div class="img-container">
-            <div class="img-placeholder">
-                <div class="number">IMAGE 23</div>
-                <div class="desc">Table finale enrichie: URL -> Nom, Titre, Entreprise, Email</div>
-            </div>
-            <p class="img-caption">Resultat: profils complets sans avoir paye Sales Navigator</p>
+            <img src="images/session-1-1/09_clay_google_search_integration.png" alt="Interface Clay avec l'option Find People with Google" style="width:100%; border-radius:8px; border:1px solid #e0e0e0;">
+            <p class="img-caption">L'intégration Google Search dans Clay permet de faire des recherches X-Ray directement</p>
         </div>
 
         <div class="callout callout-tip">
-            <div class="callout-title">✅ Templates de recherches X-Ray par vertical</div>
-            <p>Telechargez notre cheatsheet avec 20 recherches X-Ray pre-faites pour les verticals les plus courants (SaaS, Fintech, E-commerce, Agences...).</p>
-        </div>
-
-        <!-- PARTIE 4 -->
-        <h2 id="partie-4">Partie 4: Hands-on & Debug</h2>
-
-        <h3>4.1 Exercice pratique</h3>
-        <p>Chaque participant:</p>
-        <ol>
-            <li>Cree une recherche X-Ray pour son ICP</li>
-            <li>Scrappe 20 URLs LinkedIn</li>
-            <li>Les importe dans Clay</li>
-            <li>Lance l'enrichissement waterfall</li>
-        </ol>
-
-        <h3>4.2 Debug des erreurs courantes</h3>
-
-        <div class="callout callout-danger">
-            <div class="callout-title">❌ Erreur: "No results found"</div>
-            <p><strong>Cause:</strong> L'enrichissement ne trouve pas la personne.<br>
-            <strong>Solution:</strong> Verifiez l'orthographe du nom et de l'entreprise. Essayez avec le domaine email de l'entreprise.</p>
-        </div>
-
-        <div class="img-container">
-            <div class="img-placeholder">
-                <div class="number">IMAGE 24</div>
-                <div class="desc">Exemple d'erreur "No results" dans Clay et comment la resoudre</div>
-            </div>
-        </div>
-
-        <div class="callout callout-danger">
-            <div class="callout-title">❌ Erreur: "Rate limited"</div>
-            <p><strong>Cause:</strong> Trop de requetes en peu de temps.<br>
-            <strong>Solution:</strong> Attendez quelques minutes ou enrichissez par batches plus petits.</p>
-        </div>
-
-        <div class="callout callout-danger">
-            <div class="callout-title">❌ Erreur: LinkedIn URL non reconnue</div>
-            <p><strong>Cause:</strong> Format d'URL incorrect.<br>
-            <strong>Solution:</strong> L'URL doit etre au format <code>https://linkedin.com/in/username</code> ou <code>https://www.linkedin.com/in/username</code>.</p>
+            <div class="callout-title">✅ Avantage de l'intégration Clay</div>
+            <p>Avec cette méthode, vous pouvez automatiser entièrement le processus: définir vos critères (titre, entreprise, localisation) et Clay récupère automatiquement les profils LinkedIn correspondants. Plus besoin d'extension ou de copier-coller!</p>
         </div>
 
         <!-- RESSOURCES -->
         <h2 id="ressources">Ressources & Templates</h2>
 
         <div class="callout callout-info">
-            <div class="callout-title">📦 Telechargements</div>
+            <div class="callout-title">📦 Téléchargements</div>
             <ul>
-                <li><strong>Template Clay "Waterfall B2B France"</strong> - Table pre-configuree avec Apollo + Dropcontact</li>
                 <li><strong>Cheatsheet X-Ray</strong> - 20 recherches Google par vertical (PDF)</li>
                 <li><strong>CSV Example</strong> - Format de fichier pour import Clay</li>
             </ul>
         </div>
 
-        <h3>Prochaines etapes</h3>
+        <h3>Prochaines étapes</h3>
         <ul>
-            <li>Session 1.2: <a href="session-1-2-heyreach-smartlead.html">Setup HeyReach + Smartlead</a> pour envoyer vos sequences</li>
-            <li>Pratiquer les recherches X-Ray sur votre ICP reel</li>
-            <li>Tester differentes combinaisons de sources dans le waterfall</li>
+            <li>Session 1.2: <a href="session-1-2-heyreach-smartlead.html">Setup HeyReach + Smartlead</a> pour envoyer vos séquences</li>
+            <li>Pratiquer les recherches X-Ray sur votre ICP réel</li>
         </ul>
 
     </main>
