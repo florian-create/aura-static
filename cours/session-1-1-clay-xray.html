@@ -176,8 +176,8 @@
             <h4>Sommaire</h4>
             <ul>
                 <li><a href="#intro">Introduction & Objectifs <span class="duration">5 min</span></a></li>
-                <li><a href="#partie-1">Partie 1: Setup initial Clay <span class="duration">30 min</span></a></li>
-                <li><a href="#partie-2">Partie 2: Hack X-Ray Google <span class="duration">30 min</span></a></li>
+                <li><a href="#partie-1">Partie 1: Setup initial Clay <span class="duration">20 min</span></a></li>
+                <li><a href="#partie-2">Partie 2: Recherches X-Ray Google <span class="duration">35 min</span></a></li>
                 <li><a href="#ressources">Ressources & Templates</a></li>
             </ul>
         </div>
@@ -193,28 +193,28 @@
         <!-- INTRO -->
         <h2 id="intro">Introduction & Objectifs</h2>
 
-        <p>Cette session pose les bases de votre stack d'enrichissement. A la fin, vous saurez:</p>
+        <p>Cette session pose les bases de votre stack de prospection. À la fin, vous saurez:</p>
         <ul>
-            <li><strong>Configurer Clay</strong> de A a Z avec votre workspace</li>
-            <li><strong>Enrichir automatiquement</strong> vos leads avec plusieurs sources (waterfall)</li>
-            <li><strong>Economiser 80% des couts</strong> en utilisant les recherches X-Ray au lieu de Sales Navigator</li>
+            <li><strong>Configurer Clay</strong> de A à Z avec votre workspace</li>
+            <li><strong>Trouver des leads qualifiés</strong> avec les recherches X-Ray Google</li>
+            <li><strong>Économiser $99/mois</strong> en évitant Sales Navigator grâce aux techniques X-Ray</li>
         </ul>
 
         <div class="callout callout-info">
             <div class="callout-title">💡 Pourquoi Clay?</div>
-            <p>Clay permet de centraliser l'enrichissement de plusieurs sources (Apollo, Clearbit, Dropcontact...) et de ne payer que quand une source trouve l'info. C'est le "waterfall enrichment" - on essaie la source la moins chere d'abord.</p>
+            <p>Clay est un outil puissant qui combine la recherche de leads et l'enrichissement de données. Il intègre nativement les recherches X-Ray Google pour trouver des profils LinkedIn sans passer par Sales Navigator.</p>
         </div>
 
         <!-- PARTIE 1 -->
         <h2 id="partie-1">Partie 1: Setup initial Clay</h2>
 
-        <h3>1.1 Creer son compte Clay</h3>
+        <h3>1.1 Créer son compte Clay</h3>
 
         <div class="step">
             <div class="step-number">1</div>
             <div class="step-content">
-                <h4>Aller sur clay.com et creer un compte</h4>
-                <p>Utilisez votre email pro. Clay offre 100 credits gratuits pour commencer.</p>
+                <h4>Aller sur clay.com et créer un compte</h4>
+                <p>Utilisez votre email pro. Clay offre 100 crédits gratuits pour commencer.</p>
             </div>
         </div>
 
@@ -227,7 +227,7 @@
             <div class="step-number">2</div>
             <div class="step-content">
                 <h4>Configurer votre workspace</h4>
-                <p>Nommez votre workspace (ex: "NomEntreprise - GTM"). Vous pourrez inviter votre equipe plus tard.</p>
+                <p>Nommez votre workspace (ex: "NomEntreprise - GTM"). Vous pourrez inviter votre équipe plus tard.</p>
             </div>
         </div>
 
@@ -239,16 +239,16 @@
             <div class="step-number">3</div>
             <div class="step-content">
                 <h4>Comprendre l'interface principale</h4>
-                <p>L'interface Clay ressemble a un spreadsheet avec des super-pouvoirs. Chaque colonne peut etre enrichie automatiquement.</p>
+                <p>L'interface Clay ressemble à un spreadsheet avec des super-pouvoirs. Chaque colonne peut être enrichie automatiquement.</p>
             </div>
         </div>
 
         <div class="img-container">
             <img src="images/session-1-1/03_clay_main_interface.png" alt="Vue principale Clay - Interface spreadsheet avec sidebar" style="width:100%; border-radius:8px; border:1px solid #e0e0e0;">
-            <p class="img-caption">L'interface Clay: tables a gauche, colonnes au centre, enrichments a droite</p>
+            <p class="img-caption">L'interface Clay: tables à gauche, colonnes au centre, enrichments à droite</p>
         </div>
 
-        <h3>1.2 Creer votre premiere table</h3>
+        <h3>1.2 Créer votre première table</h3>
 
         <div class="step">
             <div class="step-number">4</div>
@@ -266,7 +266,7 @@
             <div class="step-number">5</div>
             <div class="step-content">
                 <h4>Importer une liste CSV de test</h4>
-                <p>Preparez un CSV avec au minimum: <code>first_name</code>, <code>last_name</code>, <code>company</code>, <code>linkedin_url</code> (optionnel).</p>
+                <p>Préparez un CSV avec au minimum: <code>first_name</code>, <code>last_name</code>, <code>company</code>, <code>linkedin_url</code> (optionnel).</p>
             </div>
         </div>
 
@@ -277,7 +277,7 @@
 
         <div class="callout callout-tip">
             <div class="callout-title">✅ Tip: Format de votre CSV</div>
-            <p>Votre CSV devrait ressembler a ca:</p>
+            <p>Votre CSV devrait ressembler à ça:</p>
             <pre><code>first_name,last_name,company,title
 Jean,Dupont,Doctolib,CTO
 Marie,Martin,Alan,VP Engineering
@@ -288,13 +288,13 @@ Marie,Martin,Alan,VP Engineering
             <img src="images/session-1-1/06_clay_table_imported_data.png" alt="Table Clay avec les données importées" style="width:100%; border-radius:8px; border:1px solid #e0e0e0;">
         </div>
 
-        <h3>1.3 Comprendre les credits Clay</h3>
+        <h3>1.3 Comprendre les crédits Clay</h3>
 
-        <p>Clay fonctionne avec un systeme de credits:</p>
+        <p>Clay fonctionne avec un système de crédits:</p>
         <ul>
-            <li><strong>1 credit</strong> = 1 enrichissement reussi</li>
-            <li>Si l'enrichissement echoue (pas de resultat), vous ne payez pas</li>
-            <li>Le waterfall permet d'optimiser: on essaie les sources gratuites/pas cheres d'abord</li>
+            <li><strong>1 crédit</strong> = 1 enrichissement réussi ou 1 recherche X-Ray</li>
+            <li>Si l'enrichissement échoue (pas de résultat), vous ne payez pas</li>
+            <li>Les recherches X-Ray Google sont très économiques en crédits</li>
         </ul>
 
         <div class="img-container">
@@ -305,16 +305,60 @@ Marie,Martin,Alan,VP Engineering
         <!-- PARTIE 2 -->
         <h2 id="partie-2">Partie 2: Hack X-Ray Google</h2>
 
-        <p>Sales Navigator coute $99/mois. Les recherches X-Ray Google sont gratuites et permettent de trouver les memes profils LinkedIn.</p>
+        <p>Sales Navigator coûte $99/mois. Les recherches X-Ray Google sont gratuites et permettent de trouver les mêmes profils LinkedIn.</p>
 
         <div class="callout callout-info">
             <div class="callout-title">💡 C'est quoi X-Ray?</div>
-            <p>"X-Ray" = utiliser les operateurs de recherche Google pour fouiller a l'interieur d'un site specifique. On "radiographie" LinkedIn via Google.</p>
+            <p>"X-Ray" = utiliser les opérateurs de recherche Google pour fouiller à l'intérieur d'un site spécifique. On "radiographie" LinkedIn via Google.</p>
         </div>
 
-        <h3>2.1 Les opérateurs de base</h3>
+        <h3>2.1 Configurer X-Ray directement dans Clay</h3>
 
-        <p>La syntaxe de base:</p>
+        <p>Clay intègre nativement les recherches X-Ray Google. Voici comment configurer une recherche depuis l'interface:</p>
+
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>Ajouter une colonne "Find People with Google"</h4>
+                <p>Cliquez sur le <code>+</code> pour ajouter une colonne et cherchez "Find People with Google" dans les enrichissements.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>Configurer les critères de recherche</h4>
+                <p>Dans le panneau de configuration, remplissez les champs:</p>
+                <ul>
+                    <li><strong>Job title:</strong> Le titre recherché (ex: "CTO", "VP Sales")</li>
+                    <li><strong>Company name:</strong> L'entreprise cible (optionnel)</li>
+                    <li><strong>Location:</strong> La localisation (ex: "Paris", "France")</li>
+                    <li><strong>Keywords:</strong> Mots-clés additionnels pour affiner</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="img-container">
+            <img src="images/session-1-1/10_clay_xray_config.png" alt="Configuration X-Ray dans Clay - Find People with Google" style="width:100%; border-radius:8px; border:1px solid #e0e0e0;">
+            <p class="img-caption">L'interface de configuration X-Ray dans Clay: job title, company, location, keywords</p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>Lancer la recherche</h4>
+                <p>Cliquez "Run" et Clay va automatiquement construire la requête X-Ray, interroger Google, et récupérer les URLs LinkedIn des profils correspondants.</p>
+            </div>
+        </div>
+
+        <div class="callout callout-tip">
+            <div class="callout-title">✅ Avantage vs recherche manuelle</div>
+            <p>Clay automatise tout: construction de la requête, scraping des résultats, extraction des URLs LinkedIn. Vous définissez les critères, Clay fait le reste.</p>
+        </div>
+
+        <h3>2.2 Les opérateurs de base (recherche manuelle)</h3>
+
+        <p>Si vous préférez faire vos recherches manuellement dans Google, voici la syntaxe:</p>
         <pre><code>site:linkedin.com/in "Titre" "Ville" "Entreprise"</code></pre>
 
         <div class="img-container">
@@ -323,7 +367,7 @@ Marie,Martin,Alan,VP Engineering
 
         <h4>Exemples de recherches:</h4>
 
-        <p><strong>Trouver tous les CTO a Paris:</strong></p>
+        <p><strong>Trouver tous les CTO à Paris:</strong></p>
         <pre><code>site:linkedin.com/in "CTO" "Paris"</code></pre>
 
         <div class="img-container">
@@ -338,15 +382,15 @@ Marie,Martin,Alan,VP Engineering
 
         <div class="img-container">
             <img src="images/session-1-1/19_google_xray_results_vp_sales.png" alt="Résultats Google avec profils LinkedIn de VP Sales fintech" style="width:100%; border-radius:8px; border:1px solid #e0e0e0;">
-            <p class="img-caption">Google trouve les profils LinkedIn publics correspondant a vos criteres</p>
+            <p class="img-caption">Google trouve les profils LinkedIn publics correspondant à vos critères</p>
         </div>
 
-        <h3>2.2 Opérateurs avancés</h3>
+        <h3>2.3 Opérateurs avancés</h3>
 
         <table style="width: 100%; margin: 20px 0; border-collapse: collapse;">
             <thead>
                 <tr style="background: var(--gray-100);">
-                    <th style="padding: 12px; text-align: left; border: 1px solid var(--gray-200);">Operateur</th>
+                    <th style="padding: 12px; text-align: left; border: 1px solid var(--gray-200);">Opérateur</th>
                     <th style="padding: 12px; text-align: left; border: 1px solid var(--gray-200);">Fonction</th>
                     <th style="padding: 12px; text-align: left; border: 1px solid var(--gray-200);">Exemple</th>
                 </tr>
@@ -354,7 +398,7 @@ Marie,Martin,Alan,VP Engineering
             <tbody>
                 <tr>
                     <td style="padding: 12px; border: 1px solid var(--gray-200);"><code>site:</code></td>
-                    <td style="padding: 12px; border: 1px solid var(--gray-200);">Limiter a un domaine</td>
+                    <td style="padding: 12px; border: 1px solid var(--gray-200);">Limiter à un domaine</td>
                     <td style="padding: 12px; border: 1px solid var(--gray-200);"><code>site:linkedin.com/in</code></td>
                 </tr>
                 <tr>
@@ -379,28 +423,6 @@ Marie,Martin,Alan,VP Engineering
                 </tr>
             </tbody>
         </table>
-
-        <h3>2.3 Intégration directe dans Clay</h3>
-
-        <p>Bonne nouvelle: Clay intègre directement les recherches Google X-Ray! Plus besoin de copier-coller manuellement les URLs.</p>
-
-        <div class="step">
-            <div class="step-number">1</div>
-            <div class="step-content">
-                <h4>Utiliser "Find People with Google" dans Clay</h4>
-                <p>Dans votre table Clay, ajoutez une nouvelle colonne et cherchez <strong>"Find People with Google"</strong> dans les enrichissements. Clay va automatiquement lancer des recherches X-Ray et récupérer les profils LinkedIn.</p>
-            </div>
-        </div>
-
-        <div class="img-container">
-            <img src="images/session-1-1/09_clay_google_search_integration.png" alt="Interface Clay avec l'option Find People with Google" style="width:100%; border-radius:8px; border:1px solid #e0e0e0;">
-            <p class="img-caption">L'intégration Google Search dans Clay permet de faire des recherches X-Ray directement</p>
-        </div>
-
-        <div class="callout callout-tip">
-            <div class="callout-title">✅ Avantage de l'intégration Clay</div>
-            <p>Avec cette méthode, vous pouvez automatiser entièrement le processus: définir vos critères (titre, entreprise, localisation) et Clay récupère automatiquement les profils LinkedIn correspondants. Plus besoin d'extension ou de copier-coller!</p>
-        </div>
 
         <!-- RESSOURCES -->
         <h2 id="ressources">Ressources & Templates</h2>
